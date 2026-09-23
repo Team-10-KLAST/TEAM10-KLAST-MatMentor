@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain;
+﻿namespace Domain;
 
 public class Interest
 {
     public int Id { get; private set; }
     public string Name { get; private set; }
+
+    protected Interest() { }
 
     public Interest(string name)
     {

@@ -18,8 +18,8 @@ public static class CreateStudentProfileEndpoint
             if (errors.Count > 0)
                 throw new ValidationException(errors);
 
-            await handler.HandleAsync(request);
-            return Results.Ok();
+            var response = await handler.HandleAsync(request);
+            return Results.Created($"/api/students/{response.Id}", response);
         });
     }
 }
