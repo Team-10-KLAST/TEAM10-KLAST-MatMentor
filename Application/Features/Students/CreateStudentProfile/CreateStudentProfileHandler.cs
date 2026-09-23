@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Application.Common.Exceptions;
 using Domain;
-using Application.Common.Exceptions;
 
 namespace Application.Features.Students.CreateStudentProfile;
 
@@ -15,24 +12,19 @@ public class CreateStudentProfileHandler
         _repository = repository;
     }
 
-    public async Task HandleAsync(CreateStudentProfileRequest request)
+    public async Task<CreateStudentProfileResponse> HandleAsync(CreateStudentProfileRequest request)
     {
-        Interest? interest = null;
-        if (request.InterestId.HasValue)
+        var interests = await _repository.GetInterestsByIdAsync(request.Interests);
+
+        var missingIds = request.Interests.Except(interests.Select(i => i.Id)).ToList();
+        if (missingIds.Count > 0)
         {
-            interest = await _repository.GetInterestByIdAsync(request.InterestId.Value);
-            if (interest == null)
-            {
-                throw new NotFoundException($"Interest with ID {request.InterestId.Value} does not exist.");
-            }
+            throw new NotFoundException($"Interest(s) with ID {string.Join(", ", missingIds)} do not exist.");
         }
-        var student = new Student(
-            request.Username,
-            request.Password,
-            request.ParentEmail,
-            request.Grade,
-            interest
-        );
+
+        var student = new Student(request.Username, request.Password, request.ParentEmail, request.Grade, interests);
         await _repository.AddAsync(student);
+
+        return new CreateStudentProfileResponse(student.Id);
     }
 }
