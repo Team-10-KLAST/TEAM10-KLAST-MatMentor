@@ -4,9 +4,9 @@ POST {{Api_HostAddress}}/api/students
 Content-Type: application/json
 
 {
-  "username": "test2",
-  "password": "test123",
-  "parentEmail": "test@test.dk",
+  "username": "Søren",
+  "password": "hemmelig1",
+  "parentEmail": "foraelder@example.com",
   "grade": 7,
-  "interestId": 1
+  "interestIds": []
 }

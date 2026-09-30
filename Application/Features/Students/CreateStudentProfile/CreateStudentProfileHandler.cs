@@ -1,38 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Application.Common.Exceptions;
+using Application.Common.Interfaces;
 using Domain;
-using Application.Common.Exceptions;
 
 namespace Application.Features.Students.CreateStudentProfile;
 
 public class CreateStudentProfileHandler
 {
     private readonly ICreateStudentProfileRepository _repository;
+    private readonly IIdentityService _identityService;
 
-    public CreateStudentProfileHandler(ICreateStudentProfileRepository repository)
+    public CreateStudentProfileHandler(ICreateStudentProfileRepository repository, IIdentityService identityService)
     {
         _repository = repository;
+        _identityService = identityService;
     }
 
     public async Task HandleAsync(CreateStudentProfileRequest request)
     {
-        Interest? interest = null;
-        if (request.InterestId.HasValue)
+        var interestIds = (request.InterestIds ?? []).Distinct().ToList();
+        var interests = await _repository.GetInterestsByIdAsync(interestIds);
+
+        if (interests.Count != interestIds.Count)
         {
-            interest = await _repository.GetInterestByIdAsync(request.InterestId.Value);
-            if (interest == null)
-            {
-                throw new NotFoundException($"Interest with ID {request.InterestId.Value} does not exist.");
-            }
+            var missing = interestIds.Except(interests.Select(i => i.Id));
+            throw new NotFoundException(
+                $"Interest(s) with IDs {string.Join(", ", missing)} do not exist.");
         }
-        var student = new Student(
-            request.Username,
-            request.Password,
-            request.ParentEmail,
-            request.Grade,
-            interest
-        );
-        await _repository.AddAsync(student);
+
+        var student = new Student(request.ParentEmail, request.Grade, interests);
+
+        var errors = await _identityService.CreateStudentWithLoginAsync(
+            student, request.Username, request.Password);
+
+        if (errors.Count > 0)
+            throw new ValidationException(errors);
     }
 }

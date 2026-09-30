@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Application.Features.Students.CreateStudentProfile;
+﻿using Application.Features.Students.CreateStudentProfile;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,14 +13,12 @@ public class StudentRepository : ICreateStudentProfileRepository
         _context = context;
     }
 
-    public async Task AddAsync(Student student)
-    {
-        _context.Students.Add(student);
-        await _context.SaveChangesAsync();
-    }
 
-    public async Task<Interest?> GetInterestByIdAsync(int interestId)
+
+    public async Task<List<Interest>> GetInterestsByIdAsync(IReadOnlyCollection<int> interestIds)
     {
-        return await _context.Interests.FirstOrDefaultAsync(i => i.Id == interestId);
+        return await _context.Interests
+            .Where(i => interestIds.Contains(i.Id))
+            .ToListAsync();
     }
 }
