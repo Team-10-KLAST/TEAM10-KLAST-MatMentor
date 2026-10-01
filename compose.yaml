@@ -1,0 +1,33 @@
+# Local development environment for the MatMentor backend.
+#   Start:   docker compose up -d
+#   Status:  docker compose ps
+#   Logs:    docker compose logs db
+#   Stop:    docker compose down        (data is kept in the volume)
+#   Reset:   docker compose down -v     (deletes the database volume)
+# Requires a .env file next to this file. Copy .env.example to .env.
+ 
+name: matmentor
+ 
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-CU27-ubuntu-22.04
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD in .env - copy .env.example to .env}"
+    ports:
+      - "127.0.0.1:1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    healthcheck:
+      # "$$" makes the variable be read inside the container, not by Compose.
+      # -C trusts the container's self-signed certificate.
+      # -b returns an error code if the query fails.
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q 'SELECT 1' -b -o /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+ 
+volumes:
+  mssql-data:
