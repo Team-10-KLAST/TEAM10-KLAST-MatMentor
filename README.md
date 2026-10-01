@@ -105,6 +105,7 @@ Start derefter API'et fra IDE'en som normalt. Kører api-containeren, så stop d
 ### Nyttige kommandoer
 | Kommando | Hvad den gør |
 |---|---|
+| `docker compose up -d --build` | Starter det hele, eller bygger API'et igen efter ændringer, mens databasen kører videre |
 | `docker compose ps` | Viser containerne, og om databasen er `healthy` |
 | `docker compose logs api` | Viser API'ets log |
 | `docker compose down` | Stopper alt. Data bevares |
