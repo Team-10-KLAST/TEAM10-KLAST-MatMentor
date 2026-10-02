@@ -1,0 +1,35 @@
+# Everything listed here is NOT sent to Docker when the image is built.
+# A smaller build context means faster builds and fewer things that can
+# invalidate the cache.
+ 
+**/bin/
+**/obj/
+**/TestResults/
+ 
+**/*.db
+**/*.db-shm
+**/*.db-wal
+ 
+**/.env*
+**/secrets.json
+ 
+.git/
+.github/
+.gitignore
+ 
+**/.vs/
+**/.vscode/
+**/.idea/
+**/*.user
+**/.DS_Store
+ 
+**/Dockerfile*
+**/compose*.yaml
+**/compose*.yml
+.dockerignore
+ 
+**/*Tests/
+ 
+README.md
+docs/
+ 

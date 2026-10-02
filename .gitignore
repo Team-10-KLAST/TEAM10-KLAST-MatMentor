@@ -6,3 +6,6 @@ obj/
 *.db
 *.db-shm
 *.db-wal
+
+# Local secrets (.env.example is committed, .env is not)
+.env
