@@ -1,13 +1,12 @@
 ﻿namespace Domain;
 
-public class Interest
+public class Topic
 {
     public int Id { get; private set; }
     public string Name { get; private set; }
 
-    public Interest(string name)
+    public Topic(string name)
     {
         Name = name;
     }
-
 }
