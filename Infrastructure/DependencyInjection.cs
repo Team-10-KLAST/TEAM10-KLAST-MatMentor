@@ -1,17 +1,15 @@
 ﻿using Application.Common.Interfaces;
+using Application.Features.ExerciseSets.StartExerciseSet;
+using Application.Features.ExerciseSets.SubmitAnswer;
 using Application.Features.Students.CreateStudentProfile;
+using Application.Features.Topics.GetTopics;
 using Infrastructure.Identity;
+using Infrastructure.Persistence.ExerciseSets;
 using Infrastructure.Persistence.Students;
+using Infrastructure.Persistence.Topics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Application.Features.Students.CreateStudentProfile;
-using Application.Features.Topics.GetTopics;
-using Application.Features.ExerciseSets.StartExerciseSet;
-using Application.Features.ExerciseSets.SubmitAnswer;
-using Infrastructure.Persistence.Students;
-using Infrastructure.Persistence.Topics;
-using Infrastructure.Persistence.ExerciseSets;
 
 namespace Infrastructure;
 
@@ -45,6 +43,7 @@ public static class DependencyInjection
         .AddEntityFrameworkStores<AppDbContext>();
 
         services.AddScoped<ICreateStudentProfileRepository, StudentRepository>();
+        services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IGetTopicsRepository, TopicRepository>();
         services.AddScoped<IStartExerciseSetRepository, ExerciseSetRepository>();
         services.AddScoped<ISubmitAnswerRepository, AnswerSubmissionRepository>();

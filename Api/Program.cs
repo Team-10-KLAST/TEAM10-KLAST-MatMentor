@@ -5,6 +5,8 @@ using Application.Features.ExerciseSets.SubmitAnswer;
 using Application.Features.Students.CreateStudentProfile;
 using Application.Features.Topics.GetTopics;
 using Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

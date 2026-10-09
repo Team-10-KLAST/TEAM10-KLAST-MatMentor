@@ -16,7 +16,8 @@ public class StartExerciseSetHandler
             throw new NotFoundException($"Student with ID {request.StudentId} does not exist.");
         }
 
-        var set = await _repository.GetFirstMatchingSetAsync(request.TopicId, student.Grade, student.Interest?.Id);
+        var interestId = student.Interests.Select(i => (int?)i.Id).FirstOrDefault();
+        var set = await _repository.GetFirstMatchingSetAsync(request.TopicId, student.Grade, interestId);
         if (set == null)
             throw new NotFoundException($"Exercise set for topic ID {request.TopicId} does not exist.");
 
