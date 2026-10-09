@@ -30,8 +30,8 @@ public static class SeedData
             new { Id = 1, ParentEmail = "test@example.com", Grade = 8 }
         );
 
-        modelBuilder.Entity("StudentInterest").HasData(
-            new { StudentId = 1, InterestsId = 1 }
+        modelBuilder.Entity("StudentInterests").HasData(
+            new { StudentId = 1, InterestId = 1 }
         );
     }
 }
