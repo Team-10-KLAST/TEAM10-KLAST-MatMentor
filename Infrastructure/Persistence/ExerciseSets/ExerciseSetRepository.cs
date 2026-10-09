@@ -10,7 +10,7 @@ public class ExerciseSetRepository : IStartExerciseSetRepository
     public ExerciseSetRepository(AppDbContext db) => _db = db;
     public async Task<Student?> GetStudentAsync(int studentId)
                 => await _db.Students
-            .Include(s => s.Interest)
+            .Include(s => s.Interests)
             .FirstOrDefaultAsync(s => s.Id == studentId);
 
     public async Task<ExerciseSet?> GetFirstMatchingSetAsync(int topicId, int grade, int? interestId)
@@ -27,7 +27,7 @@ public class ExerciseSetRepository : IStartExerciseSetRepository
 
         _db.ExerciseSetAttempts.Add(attempt);
         await _db.SaveChangesAsync();
-        
+
         return attempt;
     }
 }
