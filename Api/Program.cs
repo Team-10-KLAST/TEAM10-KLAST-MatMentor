@@ -1,9 +1,10 @@
 using Api.Middleware;
 using Application;
+using Application.Features.ExerciseSets.StartExerciseSet;
+using Application.Features.ExerciseSets.SubmitAnswer;
 using Application.Features.Students.CreateStudentProfile;
+using Application.Features.Topics.GetTopics;
 using Infrastructure;
-using Microsoft.EntityFrameworkCore;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,5 +30,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 CreateStudentProfileEndpoint.Map(app);
+GetTopicsEndpoint.Map(app);
+StartExerciseSetEndpoint.Map(app);
+SubmitAnswerEndpoint.Map(app);
 
 app.Run();

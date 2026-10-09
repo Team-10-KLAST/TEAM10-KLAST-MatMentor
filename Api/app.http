@@ -1,0 +1,31 @@
+@host = https://localhost:55076
+
+### Ukendt forsøg — forventet 404
+POST {{host}}/api/exercise-sets/submit-answer
+Content-Type: application/json
+
+{
+  "attemptId": 999,
+  "exerciseId": 1,
+  "answer": "15"
+}
+
+### Ukendt opgave — forventet 404
+POST {{host}}/api/exercise-sets/submit-answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 999,
+  "answer": "15"
+}
+
+### Tomt svar — forventet 400
+POST {{host}}/api/exercise-sets/submit-answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 1,
+  "answer": ""
+}
