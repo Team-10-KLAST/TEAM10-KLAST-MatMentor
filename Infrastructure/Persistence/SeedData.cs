@@ -27,7 +27,11 @@ public static class SeedData
         );
 
         modelBuilder.Entity<Student>().HasData(
-            new { Id = 1, UserName = "test", Password = "test", ParentEmail = "", Grade = 8, InterestId = 1 }
+            new { Id = 1, ParentEmail = "test@example.com", Grade = 8 }
+        );
+
+        modelBuilder.Entity("StudentInterest").HasData(
+            new { StudentId = 1, InterestsId = 1 }
         );
     }
 }
