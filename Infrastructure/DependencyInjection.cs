@@ -43,6 +43,7 @@ public static class DependencyInjection
         .AddEntityFrameworkStores<AppDbContext>();
 
         services.AddScoped<ICreateStudentProfileRepository, StudentRepository>();
+        services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IGetTopicsRepository, TopicRepository>();
         services.AddScoped<IStartExerciseSetRepository, ExerciseSetRepository>();
         services.AddScoped<ISubmitAnswerRepository, AnswerSubmissionRepository>();

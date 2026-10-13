@@ -26,7 +26,7 @@ public class StartExerciseSetHandler
                 $"Der er ingen flere øvesæt for emne {request.TopicId}.");
 
         var attempt = await _repository.CreateExerciseSetAttemptAsync(
-    request.StudentId, set.Id);
+            request.StudentId, set.Id);
 
         var exercises = set.Exercises
             .OrderBy(e => e.Position)
@@ -35,5 +35,4 @@ public class StartExerciseSetHandler
 
         return new StartExerciseSetResponse(attempt.Id, set.Id, set.Title, exercises);
     }
-
 }

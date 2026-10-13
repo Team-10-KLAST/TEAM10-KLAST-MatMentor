@@ -22,6 +22,177 @@ namespace Infrastructure.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.AnswerSubmission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AnsweredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ExerciseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExerciseSetAttemptId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsCorrect")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SubmittedAnswer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("ExerciseSetAttemptId", "ExerciseId")
+                        .IsUnique();
+
+                    b.ToTable("AnswerSubmissions", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Exercise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CorrectAnswer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("ExerciseSetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ExerciseText")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TopicId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TopicId");
+
+                    b.HasIndex("ExerciseSetId", "Position")
+                        .IsUnique();
+
+                    b.ToTable("Exercises", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CorrectAnswer = "15",
+                            ExerciseSetId = 1,
+                            ExerciseText = "Holdet scorede 3/4 af 20 mål. Hvor mange mål?",
+                            Position = 1,
+                            TopicId = 1,
+                            Unit = "mål"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CorrectAnswer = "320",
+                            ExerciseSetId = 1,
+                            ExerciseText = "Spilleren løb 2/5 af 800 meter. Hvor langt?",
+                            Position = 2,
+                            TopicId = 1,
+                            Unit = "meter"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.ExerciseSet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InterestId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("TopicId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InterestId");
+
+                    b.HasIndex("TopicId");
+
+                    b.ToTable("ExerciseSets", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_ExerciseSets_Grade", "[Grade] BETWEEN 7 AND 9");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Grade = 8,
+                            InterestId = 1,
+                            Title = "Øvesæt 1, Brøker, Fodbold",
+                            TopicId = 1
+                        });
+                });
+
+            modelBuilder.Entity("Domain.ExerciseSetAttempt", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ExerciseSetId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseSetId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("ExerciseSetAttempts", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Interest", b =>
                 {
                     b.Property<int>("Id")
@@ -41,6 +212,18 @@ namespace Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Interests", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Fodbold"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Ridning"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Student", b =>
@@ -64,6 +247,47 @@ namespace Infrastructure.Persistence.Migrations
                     b.ToTable("Students", null, t =>
                         {
                             t.HasCheckConstraint("CK_Students_Grade", "[Grade] BETWEEN 7 AND 9");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Grade = 8,
+                            ParentEmail = "test@example.com"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Topic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Topics", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Brøker"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Procent"
                         });
                 });
 
@@ -285,6 +509,76 @@ namespace Infrastructure.Persistence.Migrations
                     b.HasIndex("InterestId");
 
                     b.ToTable("StudentInterests");
+
+                    b.HasData(
+                        new
+                        {
+                            StudentId = 1,
+                            InterestId = 1
+                        });
+                });
+
+            modelBuilder.Entity("Domain.AnswerSubmission", b =>
+                {
+                    b.HasOne("Domain.Exercise", null)
+                        .WithMany()
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.ExerciseSetAttempt", null)
+                        .WithMany()
+                        .HasForeignKey("ExerciseSetAttemptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Exercise", b =>
+                {
+                    b.HasOne("Domain.ExerciseSet", null)
+                        .WithMany("Exercises")
+                        .HasForeignKey("ExerciseSetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Topic", null)
+                        .WithMany()
+                        .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.ExerciseSet", b =>
+                {
+                    b.HasOne("Domain.Interest", "Interest")
+                        .WithMany()
+                        .HasForeignKey("InterestId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Topic", "Topic")
+                        .WithMany()
+                        .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Interest");
+
+                    b.Navigation("Topic");
+                });
+
+            modelBuilder.Entity("Domain.ExerciseSetAttempt", b =>
+                {
+                    b.HasOne("Domain.ExerciseSet", null)
+                        .WithMany()
+                        .HasForeignKey("ExerciseSetId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Infrastructure.Identity.ApplicationUser", b =>
@@ -361,6 +655,11 @@ namespace Infrastructure.Persistence.Migrations
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.ExerciseSet", b =>
+                {
+                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

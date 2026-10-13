@@ -19,9 +19,12 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<ExerciseSetAttempt> ExerciseSetAttempts => Set<ExerciseSetAttempt>();
     public DbSet<AnswerSubmission> AnswerSubmissions => Set<AnswerSubmission>();
 
+
+    // Builds the model: Identity tables first, then all entity configurations, then seed data. 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         SeedData.Apply(modelBuilder);
     }
 }

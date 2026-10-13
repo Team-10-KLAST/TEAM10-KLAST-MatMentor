@@ -34,7 +34,7 @@ public class ExerciseSetRepository : IStartExerciseSetRepository
 
         _db.ExerciseSetAttempts.Add(attempt);
         await _db.SaveChangesAsync();
-        
+
         return attempt;
     }
 }
