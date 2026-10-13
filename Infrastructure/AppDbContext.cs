@@ -1,5 +1,7 @@
 ﻿using Domain;
+using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure;
@@ -16,9 +18,10 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Exercise> Exercises => Set<Exercise>();
     public DbSet<ExerciseSetAttempt> ExerciseSetAttempts => Set<ExerciseSetAttempt>();
     public DbSet<AnswerSubmission> AnswerSubmissions => Set<AnswerSubmission>();
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         SeedData.Apply(modelBuilder);
     }
 }

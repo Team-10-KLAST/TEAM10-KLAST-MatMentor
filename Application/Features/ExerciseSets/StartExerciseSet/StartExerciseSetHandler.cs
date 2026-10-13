@@ -16,11 +16,17 @@ public class StartExerciseSetHandler
             throw new NotFoundException($"Student with ID {request.StudentId} does not exist.");
         }
 
-        var set = await _repository.GetFirstMatchingSetAsync(request.TopicId, student.Grade, student.Interest?.Id);
-        if (set == null)
-            throw new NotFoundException($"Exercise set for topic ID {request.TopicId} does not exist.");
+        var interestIds = student.Interests.Select(i => i.Id).ToList();
 
-        var attempt = await _repository.CreateExerciseSetAttemptAsync(request.StudentId, set.Id);
+        var set = await _repository.GetNextUnfinishedSetAsync(
+            request.TopicId, student.Grade, interestIds, request.StudentId);
+
+        if (set is null)
+            throw new NotFoundException(
+                $"Der er ingen flere øvesæt for emne {request.TopicId}.");
+
+        var attempt = await _repository.CreateExerciseSetAttemptAsync(
+    request.StudentId, set.Id);
 
         var exercises = set.Exercises
             .OrderBy(e => e.Position)
