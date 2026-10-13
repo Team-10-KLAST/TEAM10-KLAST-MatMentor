@@ -23,7 +23,7 @@ public class StartExerciseSetHandler
 
         if (set is null)
             throw new NotFoundException(
-                $"Der er ingen flere øvesæt for emne {request.TopicId}.");
+                $"Der er ikke flere øvesæt for emne {request.TopicId}.");
 
         var attempt = await _repository.CreateExerciseSetAttemptAsync(
             request.StudentId, set.Id);
