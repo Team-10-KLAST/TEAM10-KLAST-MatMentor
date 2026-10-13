@@ -10,3 +10,54 @@ Content-Type: application/json
   "grade": 7,
   "interestIds": []
 }
+
+
+### 1. Start et øvesæt (noter attemptId fra svaret)
+POST {{host}}/api/exercise-sets/start
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "topicId": 1
+}
+
+### 2. Afslut forsøget — forventet 204
+POST {{host}}/api/exercise-sets/complete
+Content-Type: application/json
+
+{
+  "attemptId": 1
+}
+
+### 3. Afslut samme forsøg igen — forventet 400
+POST {{host}}/api/exercise-sets/complete
+Content-Type: application/json
+
+{
+  "attemptId": 1
+}
+
+### 4. Forsøg der ikke findes — forventet 404
+POST {{host}}/api/exercise-sets/complete
+Content-Type: application/json
+
+{
+  "attemptId": 99999
+}
+
+### 5. Ugyldigt input — forventet 400 fra validatoren
+POST {{host}}/api/exercise-sets/complete
+Content-Type: application/json
+
+{
+  "attemptId": 0
+}
+
+### 6. Start igen på samme emne — forventet et ANDET øvesæt
+POST {{host}}/api/exercise-sets/start
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "topicId": 1
+}

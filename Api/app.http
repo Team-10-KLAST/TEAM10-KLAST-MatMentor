@@ -1,31 +1,51 @@
 @host = https://localhost:55076
 
-### Ukendt forsøg — forventet 404
-POST {{host}}/api/exercise-sets/submit-answer
+### 1. Start et øvesæt (noter attemptId fra svaret)
+POST {{host}}/api/exercise-sets/start
 Content-Type: application/json
 
 {
-  "attemptId": 999,
-  "exerciseId": 1,
-  "answer": "15"
+  "studentId": 1,
+  "topicId": 1
 }
 
-### Ukendt opgave — forventet 404
-POST {{host}}/api/exercise-sets/submit-answer
+### 2. Afslut forsøget — forventet 204
+POST {{host}}/api/exercise-sets/complete
 Content-Type: application/json
 
 {
-  "attemptId": 1,
-  "exerciseId": 999,
-  "answer": "15"
+  "attemptId": 1
 }
 
-### Tomt svar — forventet 400
-POST {{host}}/api/exercise-sets/submit-answer
+### 3. Afslut samme forsøg igen — forventet 400, giver p.t. 500 (udestaaende)
+POST {{host}}/api/exercise-sets/complete
 Content-Type: application/json
 
 {
-  "attemptId": 1,
-  "exerciseId": 1,
-  "answer": ""
+  "attemptId": 1
+}
+
+### 4. Forsøg der ikke findes — forventet 404
+POST {{host}}/api/exercise-sets/complete
+Content-Type: application/json
+
+{
+  "attemptId": 99999
+}
+
+### 5. Ugyldigt input — forventet 400 fra validatoren
+POST {{host}}/api/exercise-sets/complete
+Content-Type: application/json
+
+{
+  "attemptId": 0
+}
+
+### 6. Start igen på samme emne — forventet et ANDET øvesæt
+POST {{host}}/api/exercise-sets/start
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "topicId": 1
 }

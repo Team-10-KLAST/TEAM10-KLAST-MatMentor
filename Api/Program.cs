@@ -3,6 +3,7 @@ using Application;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
 using Application.Features.Students.CreateStudentProfile;
+using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.Topics.GetTopics;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -35,5 +36,7 @@ CreateStudentProfileEndpoint.Map(app);
 GetTopicsEndpoint.Map(app);
 StartExerciseSetEndpoint.Map(app);
 SubmitAnswerEndpoint.Map(app);
+CompleteExerciseSetAttemptEndpoint.Map(app);
+
 
 app.Run();

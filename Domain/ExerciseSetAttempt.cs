@@ -13,4 +13,12 @@ public class ExerciseSetAttempt
         ExerciseSetId = exerciseSetId;
         StartedAt = DateTime.UtcNow;
     }
+
+    public void Complete()
+    {
+        if (CompletedAt is not null)
+            throw new InvalidOperationException("Forsøget er allerede afsluttet.");
+
+        CompletedAt = DateTime.UtcNow;
+    }
 }

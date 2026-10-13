@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
 using Application.Features.Students.CreateStudentProfile;
@@ -10,7 +11,6 @@ using Infrastructure.Persistence.Topics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace Infrastructure;
 
 public static class DependencyInjection
@@ -47,6 +47,8 @@ public static class DependencyInjection
         services.AddScoped<IGetTopicsRepository, TopicRepository>();
         services.AddScoped<IStartExerciseSetRepository, ExerciseSetRepository>();
         services.AddScoped<ISubmitAnswerRepository, AnswerSubmissionRepository>();
+        services.AddScoped<ICompleteExerciseSetAttemptRepository, ExerciseSetAttemptRepository>();
+        services.AddScoped<IIdentityService, IdentityService>();
 
         return services;
     }
