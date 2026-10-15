@@ -8,6 +8,7 @@ using Infrastructure.Identity;
 using Infrastructure.Persistence.ExerciseSets;
 using Infrastructure.Persistence.Students;
 using Infrastructure.Persistence.Topics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +41,7 @@ public static class DependencyInjection
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             options.Lockout.AllowedForNewUsers = true;
         })
+        .AddSignInManager()
         .AddEntityFrameworkStores<AppDbContext>();
 
         services.AddScoped<ICreateStudentProfileRepository, StudentRepository>();
@@ -48,7 +50,7 @@ public static class DependencyInjection
         services.AddScoped<IStartExerciseSetRepository, ExerciseSetRepository>();
         services.AddScoped<ISubmitAnswerRepository, AnswerSubmissionRepository>();
         services.AddScoped<ICompleteExerciseSetAttemptRepository, ExerciseSetAttemptRepository>();
-        services.AddScoped<IIdentityService, IdentityService>();
+        services.AddScoped<ITokenService, TokenService>();
 
         return services;
     }
