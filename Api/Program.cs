@@ -1,5 +1,6 @@
 using Api.Middleware;
 using Application;
+using Application.Features.Auth.Login;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
@@ -19,6 +20,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddOpenApi();
 
 IConfiguration jwtSettings = builder.Configuration.GetSection("JwtSettings");
+string jwtSecretKey = jwtSettings["SecretKey"]
+    ?? throw new InvalidOperationException("JwtSettings:SecretKey is not configured");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -32,7 +35,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = jwtSettings["Issuer"],
             ValidAudience = jwtSettings["Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]))
+                Encoding.UTF8.GetBytes(jwtSecretKey))
         };
     });
 
@@ -64,6 +67,7 @@ GetTopicsEndpoint.Map(app);
 StartExerciseSetEndpoint.Map(app);
 SubmitAnswerEndpoint.Map(app);
 CompleteExerciseSetAttemptEndpoint.Map(app);
+LoginEndpoint.Map(app);
 
 
 app.Run();
