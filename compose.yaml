@@ -33,6 +33,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: "Server=db,1433;Database=MatMentor;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+      JwtSettings__SecretKey: "${JWT_SECRET_KEY:?Set JWT_SECRET_KEY in .env - copy .env.example to .env}"
     ports:
       - "127.0.0.1:55077:8080"
     depends_on:
