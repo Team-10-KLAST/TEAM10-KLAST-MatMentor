@@ -65,7 +65,14 @@ cp .env.example .env
  
 - Mindst 8 tegn fra 3 af 4 grupper: store bogstaver, små bogstaver, tal og symboler.
 - Undgå `; $ ' " # !` og mellemrum.
-- `.env` er i `.gitignore` og må aldrig committes.
+
+Skriv derefter en nøgle efter `JWT_SECRET_KEY=`. API'et bruger den til at signere login-tokens. Kør følgende i PowerShell, så bliver en ny nøgle lagt i din udklipsholder:
+```
+"$([guid]::NewGuid().ToString('N'))$([guid]::NewGuid().ToString('N'))" | Set-Clipboard
+```
+Indsæt den derefter efter `JWT_SECRET_KEY=` med Ctrl+V. Nøglen skal være mindst 32 tegn. Du kan bruge den samme nøgle som i dine user-secrets (se Mulighed B).
+
+`.env` er i `.gitignore` og må aldrig committes.
 
 ### Mulighed A: Kør det hele i Docker
 Åbn terminalen i projektets rodmappe, og kør: 
@@ -99,6 +106,11 @@ Sæt connection stringen i dine user-secrets (kun første gang) med kodeordet fr
 ```
 dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=127.0.0.1,1433;Database=MatMentor;User Id=sa;Password=DIT_KODEORD;TrustServerCertificate=True" --project Api
 ```
+Sæt også JWT-nøglen i dine user-secrets. Brug samme nøgle som i din `.env`:
+```
+dotnet user-secrets set "JwtSettings:SecretKey" "DIN_NØGLE" --project Api
+```
+Uden nøglen starter API'et ikke, og `dotnet ef` virker heller ikke.
  
 Start derefter API'et fra IDE'en som normalt. Kører api-containeren, så stop den først med `docker compose stop api`, ellers er port 55077 optaget.
  
@@ -114,11 +126,13 @@ Start derefter API'et fra IDE'en som normalt. Kører api-containeren, så stop d
 ### Secrets
 - Ingen kodeord eller nøgler i `appsettings*.json`, `compose.yaml` eller andre filer i repoet.
 - Lokalt bruges `.env` af Docker Compose, og user-secrets bruges af API'et, når det køres fra IDE'en.
-- Del ikke output fra `docker compose config`, `docker inspect` eller `dotnet user-secrets list`. De viser kodeord i klartekst.
+- Del ikke output fra `docker compose config`, `docker inspect` eller `dotnet user-secrets list`. De viser kodeord og nøgler i klartekst.
 
 ### Typiske fejl
 - **`Login failed for user 'sa'`:** kodeordet i user-secrets og `.env` er forskelligt, eller kodeordet er ændret, efter databasen blev oprettet. SQL Server sætter kun kodeordet første gang. Kør `docker compose down -v`, og start igen.
 - **Port 1433 eller 55077 er optaget:** en lokal SQL Server kører, eller API'et kører fra IDE'en samtidig med containeren.
-- **Timeout, når du kører API'et fra IDE'en (Mulighed B):** din connection string i user-secrets bruger sandsynligvis `localhost`. Kør `user-secrets`-kommandoen fra Mulighed B igen, så der står `Server=127.0.0.1,1433`. Du kan se din nuværende værdi med `dotnet user-secrets list --project Api`.
+- **Timeout, når du kører API'et fra IDE'en (Mulighed B):** din connection string i user-secrets bruger sandsynligvis `localhost`. Kør connection string-kommandoen fra Mulighed B igen, så der står `Server=127.0.0.1,1433`. Du kan se din nuværende værdi med `dotnet user-secrets list --project Api`.
 - **Postman eller et andet værktøj hænger mod API'et:** brug `http://127.0.0.1:55077` i stedet for `localhost`.
- 
+- **`required variable JWT_SECRET_KEY is missing a value`:** din `.env` mangler JWT-nøglen. Se "Første gang". Fejlen kommer også, selvom du kun starter databasen.
+- **API'et stopper med `JwtSettings:SecretKey is not configured`, når du kører det fra IDE'en eller bruger `dotnet ef`:** nøglen mangler i dine user-secrets. Se Mulighed B.
+- **API'et stopper med `Violation of PRIMARY KEY constraint 'PK_Students'`:** din lokale database har data fra før seed-dataene kom med i migrationerne. Kør `docker compose down -v`, og start igen. 

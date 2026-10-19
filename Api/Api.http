@@ -1,63 +1,50 @@
-@Api_HostAddress = http://127.0.0.1:55077
 
-POST {{Api_HostAddress}}/api/students
+@host = https://localhost:55076
+
+### LOGIN 1. Opret testelev (kør kun én gang, ellers 400 fordi brugernavnet findes)
+POST {{host}}/api/students
 Content-Type: application/json
 
 {
-  "username": "Søren",
+  "username": "logintest",
   "password": "hemmelig1",
-  "parentEmail": "foraelder@example.com",
-  "grade": 7,
-  "interestIds": []
+  "parentEmail": "test@example.com",
+  "grade": 8,
+  "interestIds": [1]
 }
 
-
-### 1. Start et øvesæt (noter attemptId fra svaret)
-POST {{host}}/api/exercise-sets/start
+### LOGIN 2. Korrekt login — forventet 200 + token
+POST {{host}}/api/auth/login
 Content-Type: application/json
 
 {
-  "studentId": 1,
-  "topicId": 1
+  "username": "logintest",
+  "password": "hemmelig1"
 }
 
-### 2. Afslut forsøget — forventet 204
-POST {{host}}/api/exercise-sets/complete
+### LOGIN 3. Forkert kodeord — forventet 401, generisk besked
+POST {{host}}/api/auth/login
 Content-Type: application/json
 
 {
-  "attemptId": 1
+  "username": "logintest",
+  "password": "forkert"
 }
 
-### 3. Afslut samme forsøg igen — forventet 400
-POST {{host}}/api/exercise-sets/complete
+### LOGIN 4. Brugernavn findes ikke — forventet 401, SAMME besked som test 3
+POST {{host}}/api/auth/login
 Content-Type: application/json
 
 {
-  "attemptId": 1
+  "username": "findesikke",
+  "password": "hemmelig1"
 }
 
-### 4. Forsøg der ikke findes — forventet 404
-POST {{host}}/api/exercise-sets/complete
+### LOGIN 5. Tomt brugernavn — forventet 400
+POST {{host}}/api/auth/login
 Content-Type: application/json
 
 {
-  "attemptId": 99999
-}
-
-### 5. Ugyldigt input — forventet 400 fra validatoren
-POST {{host}}/api/exercise-sets/complete
-Content-Type: application/json
-
-{
-  "attemptId": 0
-}
-
-### 6. Start igen på samme emne — forventet et ANDET øvesæt
-POST {{host}}/api/exercise-sets/start
-Content-Type: application/json
-
-{
-  "studentId": 1,
-  "topicId": 1
+  "username": "",
+  "password": "hemmelig1"
 }

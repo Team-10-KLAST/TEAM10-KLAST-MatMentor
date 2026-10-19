@@ -8,6 +8,7 @@ public class ExceptionHandlingMiddleware
 
     public ExceptionHandlingMiddleware(RequestDelegate next) => _next = next;
 
+    // Runs the rest of the pipeline and turns known exceptions into the matching HTTP status code
     public async Task InvokeAsync(HttpContext context)
     {
         try
@@ -23,6 +24,16 @@ public class ExceptionHandlingMiddleware
         {
             context.Response.StatusCode = 400;
             await context.Response.WriteAsJsonAsync(new { errors = ex.Errors });
+        }
+        catch (UnauthorizedException ex)
+        {
+            context.Response.StatusCode = 401;
+            await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+        }
+        catch (AccountLockedException ex)
+        {
+            context.Response.StatusCode = 423;
+            await context.Response.WriteAsJsonAsync(new { error = ex.Message });
         }
         catch (Exception)
         {

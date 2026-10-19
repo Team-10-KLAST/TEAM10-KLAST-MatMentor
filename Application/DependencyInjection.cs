@@ -1,8 +1,9 @@
-﻿using Application.Features.ExerciseSets.StartExerciseSet;
+﻿using Application.Features.Auth.Login;
+using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
+using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
 using Application.Features.Students.CreateStudentProfile;
 using Application.Features.Topics.GetTopics;
-using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -20,6 +21,8 @@ public static class DependencyInjection
         services.AddScoped<SubmitAnswerHandler>();
         services.AddScoped<CompleteExerciseSetAttemptValidator>();
         services.AddScoped<CompleteExerciseSetAttemptHandler>();
+        services.AddScoped<LoginHandler>();
+        services.AddScoped<LoginValidator>();
 
         return services;
     }
