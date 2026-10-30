@@ -17,7 +17,7 @@ Content-Type: application/json
   "attemptId": 1
 }
 
-### 3. Afslut samme forsøg igen — forventet 400, giver p.t. 500 (udestaaende)
+### 3. Afslut samme forsøg igen — forventet 400
 POST {{host}}/api/exercise-sets/complete
 Content-Type: application/json
 
@@ -48,4 +48,65 @@ Content-Type: application/json
 {
   "studentId": 1,
   "topicId": 1
+}
+
+
+### 7. Besvar en øvelse korrekt — forventet 204
+POST {{host}}/api/exercise-sets/answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 1,
+  "answer": "1,5"
+}
+
+### 8. Samme tal med ekstra nul — forventet korrekt
+POST {{host}}/api/exercise-sets/answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 1,
+  "answer": "1,50"
+}
+
+### 9. Mellemrum omkring — forventet korrekt
+POST {{host}}/api/exercise-sets/answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 1,
+  "answer": "  1,5  "
+}
+
+### 10. Punktum — forventet 400 med besked om komma
+POST {{host}}/api/exercise-sets/answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 1,
+  "answer": "1.5"
+}
+
+### 11. Forkert svar — forventet gemt med IsCorrect = false
+POST {{host}}/api/exercise-sets/answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 1,
+  "answer": "1,6"
+}
+
+### 12. Ikke et tal — forventet 400
+POST {{host}}/api/exercise-sets/answer
+Content-Type: application/json
+
+{
+  "attemptId": 1,
+  "exerciseId": 1,
+  "answer": "to en halv"
 }

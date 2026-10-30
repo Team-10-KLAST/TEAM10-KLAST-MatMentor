@@ -19,6 +19,9 @@ public class CompleteExerciseSetAttemptHandler
         if (attempt is null)
             throw new NotFoundException($"Attempt {request.AttemptId} was not found.");
 
+        if (attempt.CompletedAt is not null)
+            throw new ValidationException(new[] { "Forsøget er allerede afsluttet." });
+
         attempt.Complete();
 
         await _repository.SaveChangesAsync();

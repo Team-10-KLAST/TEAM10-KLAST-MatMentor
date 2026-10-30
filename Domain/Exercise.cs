@@ -1,4 +1,5 @@
-﻿namespace Domain;
+﻿
+namespace Domain;
 
 public class Exercise
 {
@@ -10,10 +11,18 @@ public class Exercise
     public int ExerciseSetId { get; private set; }
     public int TopicId { get; private set; }
 
-    //Compares the student's answer to correct answer.
-    //Trims whitespace and ignores casing.
+    //Compares the answers as numbers, not as text. Otherwise 1,5 and 1,50 would differ.
     public bool IsAnswerCorrect(string submittedAnswer)
-        => string.Equals(CorrectAnswer, submittedAnswer, StringComparison.OrdinalIgnoreCase);
+    {
+        if (!AnswerFormat.TryParse(submittedAnswer, out var submitted))
+            return false;
+
+        if (!AnswerFormat.TryParse(CorrectAnswer, out var correct))
+            throw new InvalidOperationException(
+                $"Exercise {Id} has a correct answer that is not a valid number: '{CorrectAnswer}'.");
+
+        return submitted == correct;
+    }
 
     public Exercise(int position, string exerciseText, string correctAnswer, string? unit, int exerciseSetId, int topicId)
     {
