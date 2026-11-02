@@ -54,40 +54,40 @@ Content-Type: application/json
 POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{ "attemptId": 2, "exerciseId": 1, "answer": "15" }
+{ "attemptId": 3, "exerciseId": 1, "answer": "15" }
 
 ### B. GUARD 1: samme øvelse igen — forventet 400 "already been answered"
 POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{ "attemptId": 2, "exerciseId": 1, "answer": "99" }
+{ "attemptId": 3, "exerciseId": 1, "answer": "99" }
 
 ### C. Decimaler og mellemrum på øvelse 2 — forventet 200 og IsCorrect = true
 POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{ "attemptId": 2, "exerciseId": 2, "answer": "  320,00  " }
+{ "attemptId": 3, "exerciseId": 2, "answer": "  320,00  " }
 
 ### D. Punktum — forventet 400 med besked om komma
 POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{ "attemptId": 2, "exerciseId": 1, "answer": "1.5" }
+{ "attemptId": 3, "exerciseId": 1, "answer": "1.5" }
 
 ### E. Ikke et tal — forventet 400
 POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{ "attemptId": 2, "exerciseId": 1, "answer": "femten" }
+{ "attemptId": 3, "exerciseId": 1, "answer": "femten" }
 
 ### F. Afslut forsøget — forventet 204
 POST {{host}}/api/exercise-sets/complete
 Content-Type: application/json
 
-{ "attemptId": 2 }
+{ "attemptId": 3 }
 
 ### G. GUARD 3: svar efter afslutning — forventet 400 "already completed"
 POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{ "attemptId": 2, "exerciseId": 2, "answer": "320" }
+{ "attemptId": 3, "exerciseId": 2, "answer": "320" }
