@@ -50,63 +50,44 @@ Content-Type: application/json
   "topicId": 1
 }
 
-
-### 7. Besvar en øvelse korrekt — forventet 204
-POST {{host}}/api/exercise-sets/answer
+### A. Rigtigt svar på øvelse 1 — forventet 200
+POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{
-  "attemptId": 1,
-  "exerciseId": 1,
-  "answer": "1,5"
-}
+{ "attemptId": 2, "exerciseId": 1, "answer": "15" }
 
-### 8. Samme tal med ekstra nul — forventet korrekt
-POST {{host}}/api/exercise-sets/answer
+### B. GUARD 1: samme øvelse igen — forventet 400 "already been answered"
+POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{
-  "attemptId": 1,
-  "exerciseId": 1,
-  "answer": "1,50"
-}
+{ "attemptId": 2, "exerciseId": 1, "answer": "99" }
 
-### 9. Mellemrum omkring — forventet korrekt
-POST {{host}}/api/exercise-sets/answer
+### C. Decimaler og mellemrum på øvelse 2 — forventet 200 og IsCorrect = true
+POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{
-  "attemptId": 1,
-  "exerciseId": 1,
-  "answer": "  1,5  "
-}
+{ "attemptId": 2, "exerciseId": 2, "answer": "  320,00  " }
 
-### 10. Punktum — forventet 400 med besked om komma
-POST {{host}}/api/exercise-sets/answer
+### D. Punktum — forventet 400 med besked om komma
+POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{
-  "attemptId": 1,
-  "exerciseId": 1,
-  "answer": "1.5"
-}
+{ "attemptId": 2, "exerciseId": 1, "answer": "1.5" }
 
-### 11. Forkert svar — forventet gemt med IsCorrect = false
-POST {{host}}/api/exercise-sets/answer
+### E. Ikke et tal — forventet 400
+POST {{host}}/api/exercise-sets/submit-answer
 Content-Type: application/json
 
-{
-  "attemptId": 1,
-  "exerciseId": 1,
-  "answer": "1,6"
-}
+{ "attemptId": 2, "exerciseId": 1, "answer": "femten" }
 
-### 12. Ikke et tal — forventet 400
-POST {{host}}/api/exercise-sets/answer
+### F. Afslut forsøget — forventet 204
+POST {{host}}/api/exercise-sets/complete
 Content-Type: application/json
 
-{
-  "attemptId": 1,
-  "exerciseId": 1,
-  "answer": "to en halv"
-}
+{ "attemptId": 2 }
+
+### G. GUARD 3: svar efter afslutning — forventet 400 "already completed"
+POST {{host}}/api/exercise-sets/submit-answer
+Content-Type: application/json
+
+{ "attemptId": 2, "exerciseId": 2, "answer": "320" }
