@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Domain;
+namespace Domain.Rules;
 
 //The rule for how a student's answer is read as a number.
 //Kept in one place so the validator and the comparison can never disagree.
