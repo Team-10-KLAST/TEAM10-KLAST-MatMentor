@@ -1,4 +1,5 @@
 ﻿using Application.Features.Auth.Login;
+using Application.Features.ChatTutor.AskMathQuestion;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
@@ -23,6 +24,8 @@ public static class DependencyInjection
         services.AddScoped<CompleteExerciseSetAttemptHandler>();
         services.AddScoped<LoginHandler>();
         services.AddScoped<LoginValidator>();
+        services.AddScoped<AskMathQuestionValidator>();
+        services.AddScoped<AskMathQuestionHandler>();
 
         return services;
     }

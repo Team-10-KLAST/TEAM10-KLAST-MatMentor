@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Application.Features.ChatTutor.AskMathQuestion;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
@@ -8,11 +9,14 @@ using Infrastructure.Identity;
 using Infrastructure.Persistence.ExerciseSets;
 using Infrastructure.Persistence.Students;
 using Infrastructure.Persistence.Topics;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 namespace Infrastructure;
+
+using Google.GenAI;
 
 public static class DependencyInjection
 {
@@ -51,6 +55,24 @@ public static class DependencyInjection
         services.AddScoped<ISubmitAnswerRepository, AnswerSubmissionRepository>();
         services.AddScoped<ICompleteExerciseSetAttemptRepository, ExerciseSetAttemptRepository>();
         services.AddScoped<ITokenService, TokenService>();
+
+        // Register AI Math Service
+        services.AddScoped<IAiMathService, GeminiAiMathService>();
+
+        // Pull API Key from user secrets or environment variables safely
+        string apiKey = configuration["Gemini:ApiKey"];
+        if (string.IsNullOrWhiteSpace(apiKey))
+        {
+            apiKey = Environment.GetEnvironmentVariable("GEMINI_API_KEY");
+        }
+
+        if (string.IsNullOrWhiteSpace(apiKey))
+        {
+            throw new InvalidOperationException("Gemini API Key is not configured.");
+        }
+
+        // Register Google GenAI Client as a Singleton
+        services.AddSingleton(sp => new Client(apiKey: apiKey));
 
         return services;
     }
