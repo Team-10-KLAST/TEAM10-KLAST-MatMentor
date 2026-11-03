@@ -1,4 +1,6 @@
 ﻿
+using Domain.Rules;
+
 namespace Domain;
 
 public class Exercise

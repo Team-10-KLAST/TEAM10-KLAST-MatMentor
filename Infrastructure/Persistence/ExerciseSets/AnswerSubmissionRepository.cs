@@ -15,6 +15,11 @@ public class AnswerSubmissionRepository : ISubmitAnswerRepository
         => await _dbContext.Exercises
             .FirstOrDefaultAsync(e => e.Id == exerciseId);
 
+    public async Task<bool> HasSubmissionAsync(int attemptId, int exerciseId)
+     => await _dbContext.AnswerSubmissions
+         .AnyAsync(s => s.ExerciseSetAttemptId == attemptId
+                     && s.ExerciseId == exerciseId);
+
     public async Task AddSubmissionAsync(AnswerSubmission submission)
     {
         _dbContext.AnswerSubmissions.Add(submission);

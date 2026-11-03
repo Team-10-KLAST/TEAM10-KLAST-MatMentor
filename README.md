@@ -135,4 +135,25 @@ Start derefter API'et fra IDE'en som normalt. Kører api-containeren, så stop d
 - **Postman eller et andet værktøj hænger mod API'et:** brug `http://127.0.0.1:55077` i stedet for `localhost`.
 - **`required variable JWT_SECRET_KEY is missing a value`:** din `.env` mangler JWT-nøglen. Se "Første gang". Fejlen kommer også, selvom du kun starter databasen.
 - **API'et stopper med `JwtSettings:SecretKey is not configured`, når du kører det fra IDE'en eller bruger `dotnet ef`:** nøglen mangler i dine user-secrets. Se Mulighed B.
-- **API'et stopper med `Violation of PRIMARY KEY constraint 'PK_Students'`:** din lokale database har data fra før seed-dataene kom med i migrationerne. Kør `docker compose down -v`, og start igen. 
+- **API'et stopper med `Violation of PRIMARY KEY constraint 'PK_Students'`:** din lokale database har data fra før seed-dataene kom med i migrationerne. Kør `docker compose down -v`, og start igen.
+
+### AI
+Åbn terminalen i projektets rodmappe, og kør: 
+```
+dotnet package add Google.GenAI --project Infrastructure/Infrastructure.csproj
+```
+åbn .env filen i rodmappen og tilføj gemini api key. Du kan lave din egen (det er gratis https://aistudio.google.com/) ellers ligger den i team shared dokument.
+```
+GEMINI_API_KEY=
+```
+Du kan derefter teste med Postman (vælg post)
+```
+http://localhost:55077/api/chat-tutor/ask
+```
+body json
+```
+{
+  "question": "Can you explain how to solve for x in the equation 3x + 5 = 20?",
+  "studentId": "1"
+}
+```
