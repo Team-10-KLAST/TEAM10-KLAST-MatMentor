@@ -142,3 +142,14 @@ Start derefter API'et fra IDE'en som normalt. Kører api-containeren, så stop d
 ```
 dotnet package add Google.GenAI --project Infrastructure/Infrastructure.csproj
 ```
+Du kan derefter teste med Postman (vælg post)
+```
+http://localhost:55077/api/chat-tutor/ask
+```
+body json
+```
+{
+  "question": "Can you explain how to solve for x in the equation 3x + 5 = 20?",
+  "studentId": "1"
+}
+```
