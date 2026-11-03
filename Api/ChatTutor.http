@@ -1,0 +1,28 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@host = https://localhost:55076
+
+### 1. Ask a valid math question — expect 200 OK with AI response
+POST {{host}}/api/chat-tutor/ask
+Content-Type: application/json
+
+{
+  "question": "Can you explain how to solve for x in the equation 3x + 5 = 20?",
+  "studentId": "student-123"
+}
+
+### 2. Ask with an empty question — expect 400 Validation Error from validator
+POST {{host}}/api/chat-tutor/ask
+Content-Type: application/json
+
+{
+  "question": "",
+  "studentId": "student-123"
+}
+
+### 3. Ask without a studentId (optional field) — expect 200 OK
+POST {{host}}/api/chat-tutor/ask
+Content-Type: application/json
+
+{
+  "question": "What is the Pythagorean theorem and how do I use it?"
+}

@@ -20,4 +20,9 @@ public class AnswerSubmissionRepository : ISubmitAnswerRepository
         _dbContext.AnswerSubmissions.Add(submission);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<bool> HasSubmissionAsync(int param1, int param2)
+    {        
+        throw new NotImplementedException();
+    }
 }

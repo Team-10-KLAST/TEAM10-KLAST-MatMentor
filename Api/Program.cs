@@ -1,6 +1,7 @@
 using Api.Middleware;
 using Application;
 using Application.Features.Auth.Login;
+using Application.Features.ChatTutor.AskMathQuestion;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
@@ -68,6 +69,6 @@ StartExerciseSetEndpoint.Map(app);
 SubmitAnswerEndpoint.Map(app);
 CompleteExerciseSetAttemptEndpoint.Map(app);
 LoginEndpoint.Map(app);
-
+AskMathQuestionEndpoint.Map(app);
 
 app.Run();
