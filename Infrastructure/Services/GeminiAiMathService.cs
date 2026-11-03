@@ -25,8 +25,7 @@ public class GeminiAiMathService : IAiMathService
             Temperature = 0.4f
         };
 
-        // Set a 10-second timeout to prevent hanging
-        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
 
         var response = await _geminiClient.Models.GenerateContentAsync(
         model: "gemini-3.5-flash-lite",
