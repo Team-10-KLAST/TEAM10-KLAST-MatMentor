@@ -142,7 +142,7 @@ Start derefter API'et fra IDE'en som normalt. Kører api-containeren, så stop d
 ```
 dotnet package add Google.GenAI --project Infrastructure/Infrastructure.csproj
 ```
-åbn .env filen i rodmappen og tilføj gemini api key. I kan lave jeres egen ellers ligger den i team shared dokument.
+åbn .env filen i rodmappen og tilføj gemini api key. Du kan lave din egen (det er gratis https://aistudio.google.com/) ellers ligger den i team shared dokument.
 ```
 GEMINI_API_KEY=
 ```
