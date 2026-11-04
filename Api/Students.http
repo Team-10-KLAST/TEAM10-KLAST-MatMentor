@@ -1,0 +1,74 @@
+@host = https://localhost:55076
+
+### AK1.1 Profil med interesse — forventet 200
+# Kør kun én gang. Anden gang giver 400, fordi brugernavnet findes.
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "logintest",
+  "password": "hemmelig1",
+  "parentEmail": "test@example.com",
+  "grade": 8,
+  "interestIds": [1]
+}
+
+### AK1.2 Profil uden interesse — forventet 200
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "udeninteresse",
+  "password": "hemmelig1",
+  "parentEmail": "test@example.com",
+  "grade": 8,
+  "interestIds": []
+}
+
+### AK1.3 Brugernavnet er taget — forventet 400
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "logintest",
+  "password": "hemmelig1",
+  "parentEmail": "test@example.com",
+  "grade": 8,
+  "interestIds": [1]
+}
+
+### AK1.4 Manglende oplysninger — forventet 400
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "",
+  "password": "",
+  "parentEmail": "",
+  "grade": 8,
+  "interestIds": [1]
+}
+
+### AK1.5 Ugyldigt klassetrin — forventet 400
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "klassetrintest",
+  "password": "hemmelig1",
+  "parentEmail": "test@example.com",
+  "grade": 5,
+  "interestIds": [1]
+}
+
+### AK1.6 Ugyldig e-mail — forventet 400
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "emailtest",
+  "password": "hemmelig1",
+  "parentEmail": "mor",
+  "grade": 8,
+  "interestIds": [1]
+}
