@@ -20,6 +20,6 @@ public static class CreateStudentProfileEndpoint
 
             await handler.HandleAsync(request);
             return Results.Ok();
-        });
+        }).AllowAnonymous();
     }
 }
