@@ -21,9 +21,6 @@ public class LoginHandler
         LoginResult result = await _identityService.CheckCredentialsAsync(
             request.Username, request.Password);
 
-        if (result.IsLockedOut)
-            throw new AccountLockedException("The account is temporarily locked. Try again later.");
-
         if (!result.Succeeded || result.StudentId is null)
             throw new UnauthorizedException("Invalid username or password.");
 
