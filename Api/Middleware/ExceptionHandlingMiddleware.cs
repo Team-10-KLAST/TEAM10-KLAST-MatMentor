@@ -30,11 +30,6 @@ public class ExceptionHandlingMiddleware
             context.Response.StatusCode = 401;
             await context.Response.WriteAsJsonAsync(new { error = ex.Message });
         }
-        catch (AccountLockedException ex)
-        {
-            context.Response.StatusCode = 423;
-            await context.Response.WriteAsJsonAsync(new { error = ex.Message });
-        }
         catch (Exception)
         {
             context.Response.StatusCode = 500;
