@@ -12,10 +12,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
+// True when the API is only started to generate the OpenAPI document at build time
+bool isGeneratingOpenApi = Assembly.GetEntryAssembly()?.GetName().Name == "GetDocument.Insider";
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -26,7 +29,9 @@ builder.Services.AddOpenApi(options =>
 
 IConfiguration jwtSettings = builder.Configuration.GetSection("JwtSettings");
 string jwtSecretKey = jwtSettings["SecretKey"]
-    ?? throw new InvalidOperationException("JwtSettings:SecretKey is not configured");
+    ?? (isGeneratingOpenApi
+    ? "placeholder-key-only-used-when-generating-openapi-document"
+    : throw new InvalidOperationException("JwtSettings:SecretKey is not configured"));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -54,8 +59,9 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+if (!isGeneratingOpenApi)
 {
+    using var scope = app.Services.CreateScope();
     AppDbContext db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }

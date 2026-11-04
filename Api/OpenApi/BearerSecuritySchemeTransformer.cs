@@ -26,7 +26,9 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
             }
         };
 
-        foreach (var operation in document.Paths.Values.SelectMany(path => path.Operations))
+        foreach (var operation in document.Paths.Values
+            .Where(path => path.Operations is not null)
+            .SelectMany(path => path.Operations!))
         {
             operation.Value.Security ??= [];
             operation.Value.Security.Add(new OpenApiSecurityRequirement
