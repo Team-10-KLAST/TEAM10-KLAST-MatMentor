@@ -1,4 +1,5 @@
 using Api.Middleware;
+using Api.OpenApi;
 using Application;
 using Application.Features.Auth.Login;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
@@ -8,6 +9,7 @@ using Application.Features.Students.CreateStudentProfile;
 using Application.Features.Topics.GetTopics;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -17,7 +19,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options =>
+{
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+});
 
 IConfiguration jwtSettings = builder.Configuration.GetSection("JwtSettings");
 string jwtSecretKey = jwtSettings["SecretKey"]
@@ -39,7 +44,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
 
 
 var app = builder.Build();
@@ -54,7 +64,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.MapOpenApi().AllowAnonymous();
     app.UseSwaggerUI(options => options.SwaggerEndpoint("/openapi/v1.json", "MatMentor API v1"));
 }
 

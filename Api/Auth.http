@@ -1,0 +1,77 @@
+@host = https://localhost:55076
+
+### Forberedelse: opret elev til spærringstest
+# Kør kun én gang. Anden gang giver 400, fordi brugernavnet findes.
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "spaerretest",
+  "password": "hemmelig1",
+  "parentEmail": "test@example.com",
+  "grade": 8,
+  "interestIds": [1]
+}
+
+### AK4.1 Login — forventet 200 + token
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "logintest",
+  "password": "hemmelig1"
+}
+
+### AK4.2 Forkert kodeord — forventet 401 "Invalid username or password."
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "logintest",
+  "password": "forkert"
+}
+
+### AK4.3 Ukendt brugernavn — forventet 401, SAMME besked som AK4.2
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "findesikke",
+  "password": "hemmelig1"
+}
+
+### AK4.4 Spærring — send 5 gange — forventet 401 hver gang
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "spaerretest",
+  "password": "forkert"
+}
+
+### AK4.5 Spærret profil, rigtigt kodeord — forventet 401, SAMME besked som AK4.2
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "spaerretest",
+  "password": "hemmelig1"
+}
+
+### AK4.6 Efter 5 minutter, rigtigt kodeord — forventet 200 + token
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "spaerretest",
+  "password": "hemmelig1"
+}
+
+### Validering: tomt brugernavn — forventet 400
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "",
+  "password": "hemmelig1"
+}

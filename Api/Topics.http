@@ -1,0 +1,17 @@
+@host = https://localhost:55076
+
+# @name login
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "logintest",
+  "password": "hemmelig1"
+}
+
+### AK2.1 Emnerne vises — forventet 200
+GET {{host}}/api/topics
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Uden login — forventet 401
+GET {{host}}/api/topics
