@@ -1,4 +1,5 @@
 using Api.Middleware;
+using Api.OpenApi;
 using Application;
 using Application.Features.Auth.Login;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
@@ -18,7 +19,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options =>
+{
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+});
 
 IConfiguration jwtSettings = builder.Configuration.GetSection("JwtSettings");
 string jwtSecretKey = jwtSettings["SecretKey"]
