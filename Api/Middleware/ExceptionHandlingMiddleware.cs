@@ -1,4 +1,4 @@
-﻿using Application.Common.Exceptions;
+using Application.Common.Exceptions;
 
 namespace Api.Middleware;
 
@@ -29,6 +29,21 @@ public class ExceptionHandlingMiddleware
         {
             context.Response.StatusCode = 401;
             await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+        }
+        catch (TutorTimeoutException)
+        {
+            context.Response.StatusCode = 504;
+            await context.Response.WriteAsJsonAsync(
+                new { error = "AI-tutoren svarede ikke i tide. Prøv igen." });
+        }
+        catch (TutorUnavailableException)
+        {
+            context.Response.StatusCode = 503;
+            await context.Response.WriteAsJsonAsync(
+                new { error = "AI-tutoren er midlertidigt utilgængelig. Prøv igen senere." });
+        }
+        catch (OperationCanceledException) when (context.RequestAborted.IsCancellationRequested)
+        {
         }
         catch (Exception)
         {

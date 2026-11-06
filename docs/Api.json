@@ -156,10 +156,89 @@
           }
         ]
       }
+    },
+    "/api/chat-tutor/ask": {
+      "post": {
+        "tags": [
+          "Api"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskTutorRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
+      "AskTutorMessage": {
+        "required": [
+          "role",
+          "content"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "content": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "AskTutorRequest": {
+        "required": [
+          "exerciseText",
+          "attemptText",
+          "messages"
+        ],
+        "type": "object",
+        "properties": {
+          "exerciseText": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "attemptText": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "messages": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/AskTutorMessage"
+            }
+          }
+        }
+      },
       "CompleteExerciseSetAttemptRequest": {
         "type": "object",
         "properties": {
