@@ -1,4 +1,6 @@
-﻿using Application.Common.Interfaces;
+using Application.Features.ChatTutor.AskTutor;
+using Infrastructure.AI;
+using Application.Common.Interfaces;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
@@ -51,6 +53,14 @@ public static class DependencyInjection
         services.AddScoped<ISubmitAnswerRepository, AnswerSubmissionRepository>();
         services.AddScoped<ICompleteExerciseSetAttemptRepository, ExerciseSetAttemptRepository>();
         services.AddScoped<ITokenService, TokenService>();
+        services.AddHttpClient<ITutorModelClient, OllamaTutorModelClient>((serviceProvider, client) =>
+        {
+            IConfiguration settings = serviceProvider.GetRequiredService<IConfiguration>();
+            string url = settings["Ollama:BaseUrl"]
+                ?? "http://127.0.0.1:11434/";
+            client.BaseAddress = new Uri(url);
+            client.Timeout = TimeSpan.FromSeconds(60);
+        });
 
         return services;
     }
