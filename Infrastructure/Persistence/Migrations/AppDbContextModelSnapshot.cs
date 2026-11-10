@@ -117,6 +117,24 @@ namespace Infrastructure.Persistence.Migrations
                             Position = 2,
                             TopicId = 1,
                             Unit = "meter"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CorrectAnswer = "15",
+                            ExerciseSetId = 2,
+                            ExerciseText = "Hvad er 3/4 af 20?",
+                            Position = 1,
+                            TopicId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CorrectAnswer = "320",
+                            ExerciseSetId = 2,
+                            ExerciseText = "Hvad er 2/5 af 800?",
+                            Position = 2,
+                            TopicId = 1
                         });
                 });
 
@@ -131,7 +149,7 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<int>("Grade")
                         .HasColumnType("int");
 
-                    b.Property<int>("InterestId")
+                    b.Property<int?>("InterestId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -160,6 +178,13 @@ namespace Infrastructure.Persistence.Migrations
                             Grade = 8,
                             InterestId = 1,
                             Title = "Øvesæt 1, Brøker, Fodbold",
+                            TopicId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Grade = 8,
+                            Title = "Øvesæt 1, Brøker, Standard",
                             TopicId = 1
                         });
                 });
@@ -553,8 +578,7 @@ namespace Infrastructure.Persistence.Migrations
                     b.HasOne("Domain.Interest", "Interest")
                         .WithMany()
                         .HasForeignKey("InterestId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Domain.Topic", "Topic")
                         .WithMany()

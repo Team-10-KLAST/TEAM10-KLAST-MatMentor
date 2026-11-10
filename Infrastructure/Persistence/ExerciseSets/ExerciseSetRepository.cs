@@ -13,21 +13,38 @@ public class ExerciseSetRepository : IStartExerciseSetRepository
             .Include(s => s.Interests)
             .FirstOrDefaultAsync(s => s.Id == studentId);
 
-    public async Task<ExerciseSet?> GetNextUnfinishedSetAsync(
-       int topicId, int grade, IEnumerable<int> interestIds, int studentId)
+    // Returns the next unfinished exercise set without an interest (standard set) for the topic and grade
+    public async Task<ExerciseSet?> GetNextUnfinishedStandardSetAsync(int topicId, int grade, int studentId)
     {
-        return await _db.ExerciseSets
-            .Include(s => s.Exercises)
-            .Where(s => s.TopicId == topicId
-                     && s.Grade == grade
-                     && interestIds.Contains(s.InterestId)
-                     && !_db.ExerciseSetAttempts
-                            .Any(a => a.StudentId == studentId
-                                   && a.ExerciseSetId == s.Id
-                                   && a.CompletedAt != null))
+        return await UnfinishedSets(topicId, grade, studentId)
+            .Where(s => s.InterestId == null)
             .OrderBy(s => s.Id)
             .FirstOrDefaultAsync();
     }
+
+    // Returns the next unfinished exercise set matching one of the student's interests for the topic and grade
+    public async Task<ExerciseSet?> GetNextUnfinishedInterestSetAsync(
+        int topicId, int grade, IReadOnlyList<int> interestIds, int studentId)
+    {
+        return await UnfinishedSets(topicId, grade, studentId)
+            .Where(s => s.InterestId != null && interestIds.Contains(s.InterestId.Value))
+            .OrderBy(s => s.Id)
+            .FirstOrDefaultAsync();
+    }
+
+    // Builds the shared query: sets for the topic and grade that the student has not completed
+    private IQueryable<ExerciseSet> UnfinishedSets(int topicId, int grade, int studentId)
+    {
+        return _db.ExerciseSets
+            .Include(s => s.Exercises)
+            .Where(s => s.TopicId == topicId
+                     && s.Grade == grade
+                     && !_db.ExerciseSetAttempts
+                            .Any(a => a.StudentId == studentId
+                                   && a.ExerciseSetId == s.Id
+                                   && a.CompletedAt != null));
+    }
+
     public async Task<ExerciseSetAttempt> CreateExerciseSetAttemptAsync(int studentId, int exerciseSetId)
     {
         var attempt = new ExerciseSetAttempt(studentId, exerciseSetId);

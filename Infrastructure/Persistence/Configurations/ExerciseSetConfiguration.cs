@@ -26,6 +26,7 @@ public class ExerciseSetConfiguration : IEntityTypeConfiguration<ExerciseSet>
         builder.HasOne(s => s.Interest)
             .WithMany()
             .HasForeignKey(s => s.InterestId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasMany(s => s.Exercises)

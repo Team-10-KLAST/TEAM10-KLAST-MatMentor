@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Domain;
 
 namespace Application.Features.ExerciseSets.StartExerciseSet;
 
@@ -16,10 +17,11 @@ public class StartExerciseSetHandler
             throw new NotFoundException($"Student with ID {request.StudentId} does not exist.");
         }
 
-        var interestIds = student.Interests.Select(i => i.Id).ToList();
-
-        var set = await _repository.GetNextUnfinishedSetAsync(
-            request.TopicId, student.Grade, interestIds, request.StudentId);
+        ExerciseSet? set = student.HasInterests
+            ? await _repository.GetNextUnfinishedInterestSetAsync(
+                request.TopicId, student.Grade, student.Interests.Select(i => i.Id).ToList(), request.StudentId)
+            : await _repository.GetNextUnfinishedStandardSetAsync(
+                request.TopicId, student.Grade, request.StudentId);
 
         if (set is null)
             throw new NotFoundException(
