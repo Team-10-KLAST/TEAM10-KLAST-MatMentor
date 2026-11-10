@@ -1,6 +1,6 @@
-using Application.Features.ChatTutor.Conversations;
-using Application.Features.ChatTutor.AskTutor;
 using Application.Features.Auth.Login;
+using Application.Features.ChatTutor.AskTutor;
+using Application.Features.ChatTutor.Conversations;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
@@ -21,7 +21,6 @@ public static class DependencyInjection
         services.AddScoped<StartExerciseSetHandler>();
         services.AddScoped<SubmitAnswerValidator>();
         services.AddScoped<SubmitAnswerHandler>();
-        services.AddScoped<CompleteExerciseSetAttemptValidator>();
         services.AddScoped<CompleteExerciseSetAttemptHandler>();
         services.AddScoped<LoginHandler>();
         services.AddScoped<LoginValidator>();
