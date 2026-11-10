@@ -1,5 +1,5 @@
 using Application.Common.Exceptions;
-using Application.Features.ChatTutor.Conversations;
+using Application.Common.Responses;
 
 namespace Api.Middleware;
 
@@ -24,7 +24,7 @@ public class ExceptionHandlingMiddleware
         catch (ValidationException ex)
         {
             context.Response.StatusCode = 400;
-            await context.Response.WriteAsJsonAsync(new TutorValidationErrorResponse(ex.Errors));
+            await context.Response.WriteAsJsonAsync(new ValidationErrorResponse(ex.Errors));
         }
         catch (UnauthorizedException ex)
         {
@@ -34,17 +34,17 @@ public class ExceptionHandlingMiddleware
         catch (TutorForbiddenException)
         {
             context.Response.StatusCode = 403;
-            await context.Response.WriteAsJsonAsync(new TutorErrorResponse("Adgang nægtet."));
+            await context.Response.WriteAsJsonAsync(new ErrorResponse("Adgang nægtet."));
         }
         catch (TutorConflictException)
         {
             context.Response.StatusCode = 409;
-            await context.Response.WriteAsJsonAsync(new TutorErrorResponse("Samtalen blev ændret eller er optaget. Prøv igen."));
+            await context.Response.WriteAsJsonAsync(new ErrorResponse("Samtalen blev ændret eller er optaget. Prøv igen."));
         }
         catch (TutorLimitException)
         {
             context.Response.StatusCode = 429;
-            await context.Response.WriteAsJsonAsync(new TutorErrorResponse("Du har for mange åbne samtaler. Afslut en først."));
+            await context.Response.WriteAsJsonAsync(new ErrorResponse("Du har for mange åbne samtaler. Afslut en først."));
         }
         catch (TutorTimeoutException)
         {
