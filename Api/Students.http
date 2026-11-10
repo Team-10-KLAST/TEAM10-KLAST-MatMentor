@@ -1,6 +1,6 @@
 @host = https://localhost:55076
 
-### AK1.1 Profil med interesse — forventet 200
+### AK1.1 Profil med interesse — forventet 201
 # Kør kun én gang. Anden gang giver 400, fordi brugernavnet findes.
 POST {{host}}/api/students
 Content-Type: application/json
@@ -13,7 +13,7 @@ Content-Type: application/json
   "interestIds": [1]
 }
 
-### AK1.2 Profil uden interesse — forventet 200
+### AK1.2 Profil uden interesse — forventet 201
 POST {{host}}/api/students
 Content-Type: application/json
 
