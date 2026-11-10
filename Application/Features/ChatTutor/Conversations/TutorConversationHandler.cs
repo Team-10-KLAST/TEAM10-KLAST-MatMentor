@@ -21,7 +21,7 @@ public sealed class TutorConversationHandler
     {
         TutorConversation session = _store.Create(studentId, request.RequestId, request.ExerciseText!.Trim(), request.AttemptText!.Trim());
         if (!session.TurnGate.Wait(0))
-            throw new TutorConflictException("Conversation is busy.");
+            throw new ConflictException("Conversation is busy.");
         try
         {
             if (session.History.Count > 0)
@@ -56,7 +56,7 @@ public sealed class TutorConversationHandler
         TutorConversation session = _store.Find(conversationId, studentId)
             ?? throw new NotFoundException("Conversation not found or expired.");
         if (!session.TurnGate.Wait(0))
-            throw new TutorConflictException("Conversation is already processing a message.");
+            throw new ConflictException("Conversation is already processing a message.");
         try
         {
             if (!_store.IsCurrent(session))
@@ -68,12 +68,12 @@ public sealed class TutorConversationHandler
                 if (session.LastMessageId == messageId && session.LastStudentText == text
                     && request.ExpectedVersion == session.Version - 1 && session.LastTutorReply is not null)
                     return new TutorConversationResponse(session.Id, session.LastTutorReply, session.Version);
-                throw new TutorConflictException("Message id has already been used.");
+                throw new ConflictException("Message id has already been used.");
             }
             if (request.ExpectedVersion != session.Version)
-                throw new TutorConflictException("Conversation version is out of date.");
+                throw new ConflictException("Conversation version is out of date.");
             if (session.History.Count == 0)
-                throw new TutorConflictException("Conversation is still starting.");
+                throw new ConflictException("Conversation is still starting.");
             if (session.History.Count + 2 > TutorConversation.MaxHistoryMessages
                 || session.History.Sum(x => x.Content.Length) + text.Length >= TutorConversation.MaxHistoryCharacters)
                 throw new ValidationException(["Conversation is full; start a new conversation."]);
@@ -110,7 +110,7 @@ public sealed class TutorConversationHandler
         TutorConversation session = _store.Find(conversationId, studentId)
             ?? throw new NotFoundException("Conversation not found or expired.");
         if (!session.TurnGate.Wait(0))
-            throw new TutorConflictException("Conversation is busy.");
+            throw new ConflictException("Conversation is busy.");
         try
         {
             if (!_store.IsCurrent(session))

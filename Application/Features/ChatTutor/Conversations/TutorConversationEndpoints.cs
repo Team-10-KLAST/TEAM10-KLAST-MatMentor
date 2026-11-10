@@ -101,7 +101,7 @@ public static class TutorConversationEndpoints
     private static int GetStudentId(ClaimsPrincipal user)
     {
         if (!int.TryParse(user.FindFirst("StudentId")?.Value, out int studentId) || studentId <= 0)
-            throw new TutorForbiddenException("Student identity is missing.");
+            throw new ForbiddenException("Student identity is missing.");
         return studentId;
     }
 }
