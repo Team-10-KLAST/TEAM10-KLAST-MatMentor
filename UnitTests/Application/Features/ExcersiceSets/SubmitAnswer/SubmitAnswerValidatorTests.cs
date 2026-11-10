@@ -25,5 +25,5 @@ public class SubmitAnswerValidatorTests
 
     // Only the answer matters for these tests, so the ids are valid placeholders
     private static SubmitAnswerRequest CreateRequestWithAnswer(string answer)
-        => new(AttemptId: 1, ExerciseId: 1, Answer: answer);
+        => new(ExerciseId: 1, Answer: answer);
 }

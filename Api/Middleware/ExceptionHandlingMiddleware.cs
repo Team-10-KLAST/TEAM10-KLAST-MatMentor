@@ -36,10 +36,10 @@ public class ExceptionHandlingMiddleware
             context.Response.StatusCode = 403;
             await context.Response.WriteAsJsonAsync(new ErrorResponse("Adgang nægtet."));
         }
-        catch (ConflictException)
+        catch (ConflictException ex)
         {
             context.Response.StatusCode = 409;
-            await context.Response.WriteAsJsonAsync(new ErrorResponse("Samtalen blev ændret eller er optaget. Prøv igen."));
+            await context.Response.WriteAsJsonAsync(new ErrorResponse(ex.Message));
         }
         catch (LimitExceededException)
         {
