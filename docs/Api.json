@@ -24,12 +24,7 @@
           "200": {
             "description": "OK"
           }
-        },
-        "security": [
-          {
-            "Bearer": [ ]
-          }
-        ]
+        }
       }
     },
     "/api/topics": {
@@ -149,12 +144,7 @@
           "200": {
             "description": "OK"
           }
-        },
-        "security": [
-          {
-            "Bearer": [ ]
-          }
-        ]
+        }
       }
     },
     "/api/tutor-conversations": {
