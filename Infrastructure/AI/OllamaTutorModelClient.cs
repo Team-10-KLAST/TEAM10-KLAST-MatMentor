@@ -36,25 +36,25 @@ public sealed class OllamaTutorModelClient : ITutorModelClient
                 "api/chat", payload, cancellationToken);
 
             if (!response.IsSuccessStatusCode)
-                throw new TutorUnavailableException("The AI tutor is temporarily unavailable.");
+                throw new ServiceUnavailableException("The AI tutor is temporarily unavailable.");
 
             OllamaResponse? result = await response.Content.ReadFromJsonAsync<OllamaResponse>(
                 cancellationToken: cancellationToken);
 
             return result?.Message?.Content
-                ?? throw new TutorUnavailableException("The AI tutor returned an empty response.");
+                ?? throw new ServiceUnavailableException("The AI tutor returned an empty response.");
         }
         catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
         {
-            throw new TutorTimeoutException("The AI tutor took too long to respond.");
+            throw new ServiceTimeoutException("The AI tutor took too long to respond.");
         }
         catch (HttpRequestException)
         {
-            throw new TutorUnavailableException("The AI tutor is temporarily unavailable.");
+            throw new ServiceUnavailableException("The AI tutor is temporarily unavailable.");
         }
         catch (JsonException)
         {
-            throw new TutorUnavailableException("The AI tutor returned an invalid response.");
+            throw new ServiceUnavailableException("The AI tutor returned an invalid response.");
         }
     }
 

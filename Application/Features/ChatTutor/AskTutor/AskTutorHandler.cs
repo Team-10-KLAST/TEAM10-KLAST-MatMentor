@@ -18,10 +18,10 @@ public sealed class AskTutorHandler
     {
         string reply = await _modelClient.AskAsync(request, cancellationToken);
         if (string.IsNullOrWhiteSpace(reply))
-            throw new TutorUnavailableException("The AI tutor did not return a usable response.");
+            throw new ServiceUnavailableException("The AI tutor did not return a usable response.");
 
         if (reply.Trim().Length > Domain.TutorConversation.MaxMessageLength)
-            throw new TutorUnavailableException("The AI tutor returned a response that was too long.");
+            throw new ServiceUnavailableException("The AI tutor returned a response that was too long.");
 
         return new AskTutorResponse(reply.Trim());
     }

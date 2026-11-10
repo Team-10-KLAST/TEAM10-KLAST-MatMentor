@@ -34,13 +34,13 @@ public sealed class MemoryTutorConversationStore : ITutorConversationStore, IDis
             if (previous is not null)
             {
                 if (previous.ExerciseText != exerciseText || previous.AttemptText != attemptText)
-                    throw new TutorConflictException("The same request id was used with different content.");
+                    throw new ConflictException("The same request id was used with different content.");
                 return previous;
             }
             if (_sessions.Values.Count(x => x.OwnerStudentId == studentId) >= MaxSessionsPerStudent)
-                throw new TutorLimitException("Too many active conversations for this student.");
+                throw new LimitExceededException("Too many active conversations for this student.");
             if (_sessions.Count >= MaxSessions)
-                throw new TutorUnavailableException("The tutor has reached its conversation capacity.");
+                throw new ServiceUnavailableException("The tutor has reached its conversation capacity.");
             var now = _clock.GetUtcNow();
             var session = new TutorConversation(Guid.NewGuid(), startRequestId, studentId, exerciseText, attemptText, now);
             _sessions.Add(session.Id, session);
@@ -56,7 +56,7 @@ public sealed class MemoryTutorConversationStore : ITutorConversationStore, IDis
             if (!_cache.TryGetValue(session.Id, out _))
             {
                 Remove(session);
-                throw new TutorUnavailableException("The tutor has reached its conversation capacity.");
+                throw new ServiceUnavailableException("The tutor has reached its conversation capacity.");
             }
             return session;
         }

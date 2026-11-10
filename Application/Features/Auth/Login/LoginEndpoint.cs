@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Common.Responses;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -20,8 +21,12 @@ public static class LoginEndpoint
                 throw new ValidationException(errors);
 
             LoginResponse response = await handler.HandleAsync(request);
-            return Results.Ok(response);
+            return TypedResults.Ok(response);
         })
-        .AllowAnonymous();
+        .AllowAnonymous()
+        .WithTags("Auth")
+        .Produces<LoginResponse>(StatusCodes.Status200OK)
+        .Produces<ValidationErrorResponse>(StatusCodes.Status400BadRequest)
+        .Produces<ErrorResponse>(StatusCodes.Status401Unauthorized);
     }
 }

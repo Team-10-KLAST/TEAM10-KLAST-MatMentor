@@ -2,7 +2,6 @@ using Application.Common.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.RateLimiting;
 using System.Security.Claims;
 
 namespace Application.Features.ChatTutor.Conversations;
@@ -28,13 +27,13 @@ public static class TutorConversationEndpoints
         })
         .WithTags("Tutor Conversations")
         .Produces<TutorConversationResponse>(StatusCodes.Status201Created)
-        .Produces<TutorValidationErrorResponse>(StatusCodes.Status400BadRequest)
+        .Produces<ValidationErrorResponse>(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status401Unauthorized)
-        .Produces<TutorErrorResponse>(StatusCodes.Status403Forbidden)
-        .Produces<TutorErrorResponse>(StatusCodes.Status409Conflict)
-        .Produces<TutorErrorResponse>(StatusCodes.Status429TooManyRequests)
-        .Produces<TutorErrorResponse>(StatusCodes.Status503ServiceUnavailable)
-        .Produces<TutorErrorResponse>(StatusCodes.Status504GatewayTimeout)
+        .Produces<ErrorResponse>(StatusCodes.Status403Forbidden)
+        .Produces<ErrorResponse>(StatusCodes.Status409Conflict)
+        .Produces<ErrorResponse>(StatusCodes.Status429TooManyRequests)
+        .Produces<ErrorResponse>(StatusCodes.Status503ServiceUnavailable)
+        .Produces<ErrorResponse>(StatusCodes.Status504GatewayTimeout)
         .RequireRateLimiting("TutorRateLimit");
 
         app.MapPost("/api/tutor-conversations/{conversationId:guid}/messages", async (
@@ -54,14 +53,14 @@ public static class TutorConversationEndpoints
         })
         .WithTags("Tutor Conversations")
         .Produces<TutorConversationResponse>(StatusCodes.Status200OK)
-        .Produces<TutorValidationErrorResponse>(StatusCodes.Status400BadRequest)
+        .Produces<ValidationErrorResponse>(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status401Unauthorized)
-        .Produces<TutorErrorResponse>(StatusCodes.Status403Forbidden)
-        .Produces<TutorErrorResponse>(StatusCodes.Status404NotFound)
-        .Produces<TutorErrorResponse>(StatusCodes.Status409Conflict)
-        .Produces<TutorErrorResponse>(StatusCodes.Status429TooManyRequests)
-        .Produces<TutorErrorResponse>(StatusCodes.Status503ServiceUnavailable)
-        .Produces<TutorErrorResponse>(StatusCodes.Status504GatewayTimeout)
+        .Produces<ErrorResponse>(StatusCodes.Status403Forbidden)
+        .Produces<ErrorResponse>(StatusCodes.Status404NotFound)
+        .Produces<ErrorResponse>(StatusCodes.Status409Conflict)
+        .Produces<ErrorResponse>(StatusCodes.Status429TooManyRequests)
+        .Produces<ErrorResponse>(StatusCodes.Status503ServiceUnavailable)
+        .Produces<ErrorResponse>(StatusCodes.Status504GatewayTimeout)
         .RequireRateLimiting("TutorRateLimit");
 
         app.MapGet("/api/tutor-conversations/{conversationId:guid}", (
@@ -75,10 +74,10 @@ public static class TutorConversationEndpoints
         .WithTags("Tutor Conversations")
         .Produces<TutorConversationStateResponse>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status401Unauthorized)
-        .Produces<TutorErrorResponse>(StatusCodes.Status403Forbidden)
-        .Produces<TutorErrorResponse>(StatusCodes.Status404NotFound)
-        .Produces<TutorErrorResponse>(StatusCodes.Status409Conflict)
-        .Produces<TutorErrorResponse>(StatusCodes.Status429TooManyRequests)
+        .Produces<ErrorResponse>(StatusCodes.Status403Forbidden)
+        .Produces<ErrorResponse>(StatusCodes.Status404NotFound)
+        .Produces<ErrorResponse>(StatusCodes.Status409Conflict)
+        .Produces<ErrorResponse>(StatusCodes.Status429TooManyRequests)
         .RequireRateLimiting("TutorReadRateLimit");
 
         app.MapDelete("/api/tutor-conversations/{conversationId:guid}", (
@@ -94,15 +93,15 @@ public static class TutorConversationEndpoints
         .WithTags("Tutor Conversations")
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status401Unauthorized)
-        .Produces<TutorErrorResponse>(StatusCodes.Status403Forbidden)
-        .Produces<TutorErrorResponse>(StatusCodes.Status404NotFound);
+        .Produces<ErrorResponse>(StatusCodes.Status403Forbidden)
+        .Produces<ErrorResponse>(StatusCodes.Status404NotFound);
     }
 
     // Extracts a validated student identity from the JWT claim, independent of client-provided data.
     private static int GetStudentId(ClaimsPrincipal user)
     {
         if (!int.TryParse(user.FindFirst("StudentId")?.Value, out int studentId) || studentId <= 0)
-            throw new TutorForbiddenException("Student identity is missing.");
+            throw new ForbiddenException("Student identity is missing.");
         return studentId;
     }
 }
