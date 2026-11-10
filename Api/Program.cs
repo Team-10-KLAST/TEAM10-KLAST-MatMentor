@@ -1,3 +1,6 @@
+using Application.Features.ChatTutor.Conversations;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 using Api.Middleware;
 using Api.OpenApi;
 using Application;
@@ -22,6 +25,40 @@ bool isGeneratingOpenApi = Assembly.GetEntryAssembly()?.GetName().Name == "GetDo
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddPolicy("TutorRateLimit", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            context.User.FindFirst("StudentId")?.Value
+                ?? context.Connection.RemoteIpAddress?.ToString()
+                ?? "unknown",
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 5,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0,
+                AutoReplenishment = true
+            }));
+    options.AddPolicy("TutorReadRateLimit", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            context.User.FindFirst("StudentId")?.Value
+                ?? context.Connection.RemoteIpAddress?.ToString()
+                ?? "unknown",
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 30,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0,
+                AutoReplenishment = true
+            }));
+    options.OnRejected = async (context, cancellationToken) =>
+    {
+        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+        await context.HttpContext.Response.WriteAsJsonAsync(
+            new { error = "Du har sendt for mange beskeder. Vent et øjeblik og prøv igen." },
+            cancellationToken);
+    };
+});
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
@@ -77,6 +114,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseRateLimiter();
 app.UseAuthorization();
 
 CreateStudentProfileEndpoint.Map(app);
@@ -85,6 +123,7 @@ StartExerciseSetEndpoint.Map(app);
 SubmitAnswerEndpoint.Map(app);
 CompleteExerciseSetAttemptEndpoint.Map(app);
 LoginEndpoint.Map(app);
+TutorConversationEndpoints.Map(app);
 
 
 app.Run();
