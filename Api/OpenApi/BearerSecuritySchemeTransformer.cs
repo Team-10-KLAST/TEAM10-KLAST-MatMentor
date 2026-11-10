@@ -4,7 +4,7 @@ using Microsoft.OpenApi;
 
 namespace Api.OpenApi;
 
-// Adds JWT bearer login to the OpenAPI document, so Swagger shows an Authorize button
+// Adds the JWT bearer scheme to the OpenAPI document, so Swagger shows an Authorize button
 internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvider authenticationSchemeProvider)
     : IOpenApiDocumentTransformer
 {
@@ -26,15 +26,6 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
             }
         };
 
-        foreach (var operation in document.Paths.Values
-            .Where(path => path.Operations is not null)
-            .SelectMany(path => path.Operations!))
-        {
-            operation.Value.Security ??= [];
-            operation.Value.Security.Add(new OpenApiSecurityRequirement
-            {
-                [new OpenApiSecuritySchemeReference("Bearer", document)] = []
-            });
-        }
+
     }
 }

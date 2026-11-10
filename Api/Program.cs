@@ -1,10 +1,8 @@
-using Application.Features.ChatTutor.Conversations;
-using Microsoft.AspNetCore.RateLimiting;
-using System.Threading.RateLimiting;
 using Api.Middleware;
 using Api.OpenApi;
 using Application;
 using Application.Features.Auth.Login;
+using Application.Features.ChatTutor.Conversations;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
@@ -17,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
+using System.Threading.RateLimiting;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,6 +61,7 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+    options.AddOperationTransformer<BearerSecurityRequirementTransformer>();
 });
 
 IConfiguration jwtSettings = builder.Configuration.GetSection("JwtSettings");
