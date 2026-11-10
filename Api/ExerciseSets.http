@@ -1,0 +1,86 @@
+@host = https://localhost:55076
+
+### Forberedelse: opret elev uden interesser — forventet 201 (anden gang 400, fordi brugernavnet findes)
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "standardtest",
+  "password": "hemmelig1",
+  "parentEmail": "test@example.com",
+  "grade": 8,
+  "interestIds": []
+}
+
+### Forberedelse: log ind som eleven uden interesser — forventet 200 + token
+# @name loginStandard
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{ "username": "standardtest", "password": "hemmelig1" }
+
+### AK3.2 Elev uden interesse får standard-øvesæt — forventet 201, "Øvesæt 1, Brøker, Standard"
+# @name start
+POST {{host}}/api/exercise-set-attempts
+Authorization: Bearer {{loginStandard.response.body.$.token}}
+Content-Type: application/json
+
+{ "topicId": 1 }
+
+### AK5.1 Rigtigt svar — forventet 204
+POST {{host}}/api/exercise-set-attempts/{{start.response.body.$.attemptId}}/answers
+Authorization: Bearer {{loginStandard.response.body.$.token}}
+Content-Type: application/json
+
+{ "exerciseId": {{start.response.body.$.exercises[0].id}}, "answer": "15" }
+
+### Samme opgave igen (note under UC5: kun ét svar pr. opgave) — forventet 409
+POST {{host}}/api/exercise-set-attempts/{{start.response.body.$.attemptId}}/answers
+Authorization: Bearer {{loginStandard.response.body.$.token}}
+Content-Type: application/json
+
+{ "exerciseId": {{start.response.body.$.exercises[0].id}}, "answer": "15" }
+
+### AK6.1 Afslut — forventet 204
+POST {{host}}/api/exercise-set-attempts/{{start.response.body.$.attemptId}}/completion
+Authorization: Bearer {{loginStandard.response.body.$.token}}
+
+### AK6.2 Afslut igen — forventet 409
+POST {{host}}/api/exercise-set-attempts/{{start.response.body.$.attemptId}}/completion
+Authorization: Bearer {{loginStandard.response.body.$.token}}
+
+### AK6.3 Svar efter afslut — forventet 409
+POST {{host}}/api/exercise-set-attempts/{{start.response.body.$.attemptId}}/answers
+Authorization: Bearer {{loginStandard.response.body.$.token}}
+Content-Type: application/json
+
+{ "exerciseId": {{start.response.body.$.exercises[1].id}}, "answer": "320" }
+
+### Forberedelse: opret en anden elev — forventet 201 (anden gang 400, fordi brugernavnet findes)
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "username": "andenelev",
+  "password": "hemmelig1",
+  "parentEmail": "test@example.com",
+  "grade": 8,
+  "interestIds": [1]
+}
+
+### Forberedelse: log ind som en anden elev — forventet 200 + token
+# @name loginOther
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{ "username": "andenelev", "password": "hemmelig1" }
+
+### En andens forsøg — forventet 404
+POST {{host}}/api/exercise-set-attempts/{{start.response.body.$.attemptId}}/completion
+Authorization: Bearer {{loginOther.response.body.$.token}}
+
+### Uden login — forventet 401
+POST {{host}}/api/exercise-set-attempts
+Content-Type: application/json
+
+{ "topicId": 1 }
