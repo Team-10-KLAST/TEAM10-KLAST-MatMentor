@@ -1,4 +1,4 @@
-using Application.Features.ChatTutor.AskTutor;
+using Application.Features.ChatTutor.Conversations;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using Api.Middleware;
@@ -35,6 +35,18 @@ builder.Services.AddRateLimiter(options =>
             _ => new FixedWindowRateLimiterOptions
             {
                 PermitLimit = 5,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0,
+                AutoReplenishment = true
+            }));
+    options.AddPolicy("TutorReadRateLimit", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            context.User.FindFirst("StudentId")?.Value
+                ?? context.Connection.RemoteIpAddress?.ToString()
+                ?? "unknown",
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 30,
                 Window = TimeSpan.FromMinutes(1),
                 QueueLimit = 0,
                 AutoReplenishment = true
@@ -111,7 +123,7 @@ StartExerciseSetEndpoint.Map(app);
 SubmitAnswerEndpoint.Map(app);
 CompleteExerciseSetAttemptEndpoint.Map(app);
 LoginEndpoint.Map(app);
-AskTutorEndpoint.Map(app);
+TutorConversationEndpoints.Map(app);
 
 
 app.Run();

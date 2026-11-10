@@ -1,3 +1,4 @@
+using Application.Features.ChatTutor.Conversations;
 using Application.Features.ChatTutor.AskTutor;
 using Application.Features.Auth.Login;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
@@ -26,6 +27,8 @@ public static class DependencyInjection
         services.AddScoped<LoginValidator>();
         services.AddScoped<AskTutorValidator>();
         services.AddScoped<AskTutorHandler>();
+        services.AddScoped<TutorConversationValidator>();
+        services.AddScoped<TutorConversationHandler>();
 
         return services;
     }

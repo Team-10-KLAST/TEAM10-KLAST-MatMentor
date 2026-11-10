@@ -137,7 +137,35 @@ Start derefter API'et fra IDE'en som normalt. Kører api-containeren, så stop d
 - **API'et stopper med `JwtSettings:SecretKey is not configured`, når du kører det fra IDE'en eller bruger `dotnet ef`:** nøglen mangler i dine user-secrets. Se Mulighed B.
 - **API'et stopper med `Violation of PRIMARY KEY constraint 'PK_Students'`:** din lokale database har data fra før seed-dataene kom med i migrationerne. Kør `docker compose down -v`, og start igen.
 
-### AI
+### AI – Ollama (lokal test)
+
+Vi bruger Ollama til at teste AI-tutoren lokalt. Tutorens LOVPORT-regler og instruktioner ligger i backend.
+
+**1. Installer Ollama**
+Download og installer Ollama fra https://ollama.com/download.
+Start Ollama på computeren.
+
+**2. Hent AI-modellen**
+Åbn PowerShell, og kør:
+``` ollama pull gemma3n:e2b ```
+
+Kontrollér, at modellen er installeret:
+
+``` ollama list ```
+
+Modellen `gemma3n:e2b` skal stå på listen.
+
+**3. Test AI-tutoren**
+Start backend og MAUI-appen som normalt. Log ind, åbn AI-tutoren, og send en matematikopgave.
+Hvis AI-tutoren ikke svarer, så kontrollér, at Ollama er startet, og at modellen findes med `ollama list`.
+Ollama skal køre, mens AI-chatten bruges.
+
+
+### AI – Gemini (skyet)
+
+> **OBS – Gemini:** Gemini-afsnittet nedenfor beskriver den tidligere opsætning (Tais). Vejledningen skal gennemgås og opdateres, når integrationen mellem backend og Gemini cloud er implementeret og testet.
+
+
 Åbn terminalen i projektets rodmappe, og kør: 
 ```
 dotnet package add Google.GenAI --project Infrastructure/Infrastructure.csproj

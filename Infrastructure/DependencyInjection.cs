@@ -1,3 +1,4 @@
+using Application.Features.ChatTutor.Conversations;
 using Application.Features.ChatTutor.AskTutor;
 using Infrastructure.AI;
 using Application.Common.Interfaces;
@@ -53,6 +54,9 @@ public static class DependencyInjection
         services.AddScoped<ISubmitAnswerRepository, AnswerSubmissionRepository>();
         services.AddScoped<ICompleteExerciseSetAttemptRepository, ExerciseSetAttemptRepository>();
         services.AddScoped<ITokenService, TokenService>();
+        services.AddSingleton<TimeProvider>(TimeProvider.System);
+        services.AddSingleton<ITutorConversationStore, MemoryTutorConversationStore>();
+        services.AddHostedService<TutorConversationCleanupService>();
         services.AddHttpClient<ITutorModelClient, OllamaTutorModelClient>((serviceProvider, client) =>
         {
             IConfiguration settings = serviceProvider.GetRequiredService<IConfiguration>();
