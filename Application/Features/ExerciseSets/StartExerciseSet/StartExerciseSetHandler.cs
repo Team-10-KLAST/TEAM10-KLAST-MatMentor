@@ -9,26 +9,27 @@ public class StartExerciseSetHandler
     public StartExerciseSetHandler(IStartExerciseSetRepository repository)
         => _repository = repository;
 
-    public async Task<StartExerciseSetResponse> HandleAsync(StartExerciseSetRequest request)
+    // Starts the next unfinished exercise set in the topic for the student from the token
+    public async Task<StartExerciseSetResponse> HandleAsync(int studentId, StartExerciseSetRequest request)
     {
-        var student = await _repository.GetStudentAsync(request.StudentId);
+        var student = await _repository.GetStudentAsync(studentId);
         if (student == null)
         {
-            throw new NotFoundException($"Student with ID {request.StudentId} does not exist.");
+            throw new NotFoundException($"Student with ID {studentId} does not exist.");
         }
 
         ExerciseSet? set = student.HasInterests
             ? await _repository.GetNextUnfinishedInterestSetAsync(
-                request.TopicId, student.Grade, student.Interests.Select(i => i.Id).ToList(), request.StudentId)
+                request.TopicId, student.Grade, student.Interests.Select(i => i.Id).ToList(), studentId)
             : await _repository.GetNextUnfinishedStandardSetAsync(
-                request.TopicId, student.Grade, request.StudentId);
+                request.TopicId, student.Grade, studentId);
 
         if (set is null)
             throw new NotFoundException(
                 $"Der er ikke flere øvesæt for emne {request.TopicId}.");
 
         var attempt = await _repository.CreateExerciseSetAttemptAsync(
-            request.StudentId, set.Id);
+            studentId, set.Id);
 
         var exercises = set.Exercises
             .OrderBy(e => e.Position)

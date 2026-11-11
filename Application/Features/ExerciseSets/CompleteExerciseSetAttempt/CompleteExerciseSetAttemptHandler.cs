@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Domain;
 
 namespace Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 
@@ -12,18 +13,17 @@ public class CompleteExerciseSetAttemptHandler
         _repository = repository;
     }
 
-    public async Task HandleAsync(CompleteExerciseSetAttemptRequest request)
+    // Completes the student's own attempt. Completing an attempt twice is a conflict.
+    public async Task HandleAsync(int studentId, int attemptId)
     {
-        var attempt = await _repository.GetAttemptAsync(request.AttemptId);
-
-        if (attempt is null)
-            throw new NotFoundException($"Attempt {request.AttemptId} was not found.");
+        ExerciseSetAttempt? attempt = await _repository.GetAttemptAsync(attemptId);
+        if (attempt is null || attempt.StudentId != studentId)
+            throw new NotFoundException($"Attempt {attemptId} was not found.");
 
         if (attempt.CompletedAt is not null)
-            throw new ValidationException(new[] { "Forsøget er allerede afsluttet." });
+            throw new ConflictException("The exercise set attempt is already completed.");
 
         attempt.Complete();
-
         await _repository.SaveChangesAsync();
     }
 }

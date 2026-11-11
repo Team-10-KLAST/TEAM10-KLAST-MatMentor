@@ -74,10 +74,10 @@
         ]
       }
     },
-    "/api/exercise-sets/start": {
+    "/api/exercise-set-attempts": {
       "post": {
         "tags": [
-          "Api"
+          "Exercise Set Attempts"
         ],
         "requestBody": {
           "content": {
@@ -90,8 +90,38 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartExerciseSetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -101,10 +131,22 @@
         ]
       }
     },
-    "/api/exercise-sets/submit-answer": {
+    "/api/exercise-set-attempts/{attemptId}/answers": {
       "post": {
         "tags": [
-          "Api"
+          "Exercise Set Attempts"
+        ],
+        "parameters": [
+          {
+            "name": "attemptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -117,8 +159,41 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -128,24 +203,49 @@
         ]
       }
     },
-    "/api/exercise-sets/complete": {
+    "/api/exercise-set-attempts/{attemptId}/completion": {
       "post": {
         "tags": [
-          "Api"
+          "Exercise Set Attempts"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CompleteExerciseSetAttemptRequest"
+        "parameters": [
+          {
+            "name": "attemptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
               }
             }
           },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -549,19 +649,6 @@
   },
   "components": {
     "schemas": {
-      "CompleteExerciseSetAttemptRequest": {
-        "type": "object",
-        "properties": {
-          "attemptId": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          }
-        }
-      },
       "CreateStudentProfileRequest": {
         "required": [
           "username",
@@ -639,6 +726,42 @@
           }
         }
       },
+      "ExerciseItem": {
+        "required": [
+          "id",
+          "position",
+          "exerciseText",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "position": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exerciseText": {
+            "type": "string"
+          },
+          "unit": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
       "GetTopicsResponse": {
         "required": [
           "topics"
@@ -709,19 +832,10 @@
       },
       "StartExerciseSetRequest": {
         "required": [
-          "studentId",
           "topicId"
         ],
         "type": "object",
         "properties": {
-          "studentId": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
           "topicId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "type": [
@@ -732,11 +846,12 @@
           }
         }
       },
-      "SubmitAnswerRequest": {
+      "StartExerciseSetResponse": {
         "required": [
           "attemptId",
-          "exerciseId",
-          "answer"
+          "exerciseSetId",
+          "title",
+          "exercises"
         ],
         "type": "object",
         "properties": {
@@ -748,6 +863,32 @@
             ],
             "format": "int32"
           },
+          "exerciseSetId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseItem"
+            }
+          }
+        }
+      },
+      "SubmitAnswerRequest": {
+        "required": [
+          "exerciseId",
+          "answer"
+        ],
+        "type": "object",
+        "properties": {
           "exerciseId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "type": [
@@ -880,7 +1021,7 @@
       "name": "Topics"
     },
     {
-      "name": "Api"
+      "name": "Exercise Set Attempts"
     },
     {
       "name": "Auth"

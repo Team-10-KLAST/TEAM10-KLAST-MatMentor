@@ -8,11 +8,6 @@ public class SubmitAnswerValidator
     {
         var errors = new List<string>();
 
-        if (request.AttemptId <= 0)
-        {
-            errors.Add("AttemptId must be a positive number.");
-        }
-
         if (request.ExerciseId <= 0)
         {
             errors.Add("ExerciseId must be a positive number.");
