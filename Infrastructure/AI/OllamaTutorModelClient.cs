@@ -1,8 +1,11 @@
-using System.Net.Http.Json;
-using System.Text.Json;
 using Application.Common.Exceptions;
 using Application.Features.ChatTutor.AskTutor;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Polly.CircuitBreaker;
+using Polly.Timeout;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace Infrastructure.AI;
 
@@ -10,11 +13,16 @@ public sealed class OllamaTutorModelClient : ITutorModelClient
 {
     private readonly HttpClient _httpClient;
     private readonly string _model;
+    private readonly ILogger<OllamaTutorModelClient> _logger;
 
-    public OllamaTutorModelClient(HttpClient httpClient, IConfiguration configuration)
+    public OllamaTutorModelClient(
+        HttpClient httpClient,
+        IConfiguration configuration,
+        ILogger<OllamaTutorModelClient> logger)
     {
         _httpClient = httpClient;
         _model = configuration["Ollama:Model"] ?? "matmentor-tutor:latest";
+        _logger = logger;
     }
 
     // Calls Ollama's non-streaming chat API with the trusted tutor policy and transient history.
@@ -44,16 +52,32 @@ public sealed class OllamaTutorModelClient : ITutorModelClient
             return result?.Message?.Content
                 ?? throw new ServiceUnavailableException("The AI tutor returned an empty response.");
         }
-        catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
+        catch (BrokenCircuitException)
         {
-            throw new ServiceTimeoutException("The AI tutor took too long to respond.");
-        }
-        catch (HttpRequestException)
-        {
+            //The circuit is open, so nothing was sent. The tutor is known to be failing.
+            _logger.LogWarning("Tutor request rejected: the circuit is open.");
             throw new ServiceUnavailableException("The AI tutor is temporarily unavailable.");
         }
-        catch (JsonException)
+        catch (TimeoutRejectedException)
         {
+            //The whole pipeline ran out of time, including the retry.
+            _logger.LogWarning("Tutor request exceeded the total time budget.");
+            throw new ServiceTimeoutException("The AI tutor took too long to respond.");
+        }
+        catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
+        {
+            //The student did not cancel, so this is the tutor taking too long.
+            _logger.LogWarning("Tutor request timed out.");
+            throw new ServiceTimeoutException("The AI tutor took too long to respond.");
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogWarning(ex, "Tutor request failed.");
+            throw new ServiceUnavailableException("The AI tutor is temporarily unavailable.");
+        }
+        catch (JsonException ex)
+        {
+            _logger.LogWarning(ex, "Tutor returned a response that could not be read.");
             throw new ServiceUnavailableException("The AI tutor returned an invalid response.");
         }
     }
