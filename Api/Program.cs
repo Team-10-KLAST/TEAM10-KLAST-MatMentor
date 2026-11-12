@@ -109,6 +109,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi().AllowAnonymous();
     app.UseSwaggerUI(options => options.SwaggerEndpoint("/openapi/v1.json", "MatMentor API v1"));
+    Api.Development.FakeOllamaEndpoints.Map(app);
 }
 
 app.UseHttpsRedirection();
