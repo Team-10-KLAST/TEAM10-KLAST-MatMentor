@@ -1,4 +1,5 @@
 ﻿using Domain.Rules;
+using UnitTests.TestHelpers;
 
 namespace UnitTests.Domain.Rules;
 
@@ -91,5 +92,19 @@ public class AnswerFormatTests
         var success = AnswerFormat.TryParse(input, out _);
 
         Assert.False(success);
+    }
+
+    // The answer is read the same way when the server runs with English settings
+    [Theory]
+    [Trait("TestCase", "TC-012")]
+    [InlineData("3,5", true)]
+    [InlineData("3.5", false)]
+    public void TryParse_EnglishCurrentCulture_GivesSameResultAsDanish(string input, bool expectedSuccess)
+    {
+        using var culture = new CultureScope("en-US");
+
+        var success = AnswerFormat.TryParse(input, out _);
+
+        Assert.Equal(expectedSuccess, success);
     }
 }
