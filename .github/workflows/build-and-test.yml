@@ -1,4 +1,4 @@
-# Builds the backend and runs the unit tests.
+# Builds the backend and runs the unit tests with code coverage.
 # Runs on every pull request to main, so the result shows up on the
 # pull request before it is merged, and again after each merge to main.
 # Can also be started manually from the Actions tab.
@@ -17,8 +17,8 @@ permissions:
 
 jobs:
   unit-tests:
-    # This name becomes the status check that main requires later.
-    # Do not rename it once the check is required.
+    # This name is the status check that main requires.
+    # Do not rename it, or pull requests can no longer be merged.
     name: Build and run unit tests
     runs-on: ubuntu-latest
     # Stop the job if it hangs, instead of waiting for the default limit of 6 hours.
@@ -43,5 +43,48 @@ jobs:
 
       # Only the unit test project runs here. The integration tests
       # need Docker and are slower, so they will get their own job later.
-      - name: Run the unit tests
-        run: dotnet test --project UnitTests/UnitTests.csproj --no-build
+      # coverlet measures coverage of Domain and Application only, and skips
+      # the endpoint files. The Cobertura file is written to TestResults.
+      # The options go directly on dotnet test (no "--") because the repo
+      # uses Microsoft.Testing.Platform.
+      - name: Run the unit tests with coverage
+        run: >
+          dotnet test --project UnitTests/UnitTests.csproj --no-build
+          --results-directory TestResults
+          --coverlet
+          --coverlet-output-format cobertura
+          --coverlet-file-prefix unit-tests
+          --coverlet-include "[Domain]*"
+          --coverlet-include "[Application]*"
+          --coverlet-exclude-by-file "**/*Endpoint.cs"
+
+      # The report steps also run when a test fails, so the coverage
+      # report is there when it is needed most. They are skipped if the
+      # run is cancelled.
+      # Same version as used locally, so the report looks the same.
+      - name: Install ReportGenerator
+        if: ${{ !cancelled() }}
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.6.0
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Create the coverage report
+        if: ${{ !cancelled() }}
+        run: >
+          reportgenerator
+          -reports:"TestResults/unit-tests.coverage.cobertura.*.xml"
+          -targetdir:coverage-report
+          -reporttypes:"Html;MarkdownSummaryGithub"
+
+      # Shows the short summary directly on the run's Summary page.
+      - name: Add the coverage summary to the run
+        if: ${{ !cancelled() }}
+        run: cat coverage-report/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY"
+
+      # The full HTML report can be downloaded from the run's Summary page.
+      - name: Upload the HTML coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report
+          path: coverage-report/
