@@ -12,6 +12,7 @@
  
 MAUI-appen (frontend) er et selvstændigt projekt/repository uden nogen projekt-reference til backend'en.
 
+
 ## Mappestruktur 
 
 ```
