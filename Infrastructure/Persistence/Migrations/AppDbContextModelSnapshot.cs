@@ -96,46 +96,6 @@ namespace Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Exercises", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CorrectAnswer = "15",
-                            ExerciseSetId = 1,
-                            ExerciseText = "Holdet scorede 3/4 af 20 mål. Hvor mange mål?",
-                            Position = 1,
-                            TopicId = 1,
-                            Unit = "mål"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CorrectAnswer = "320",
-                            ExerciseSetId = 1,
-                            ExerciseText = "Spilleren løb 2/5 af 800 meter. Hvor langt?",
-                            Position = 2,
-                            TopicId = 1,
-                            Unit = "meter"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CorrectAnswer = "15",
-                            ExerciseSetId = 2,
-                            ExerciseText = "Hvad er 3/4 af 20?",
-                            Position = 1,
-                            TopicId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CorrectAnswer = "320",
-                            ExerciseSetId = 2,
-                            ExerciseText = "Hvad er 2/5 af 800?",
-                            Position = 2,
-                            TopicId = 1
-                        });
                 });
 
             modelBuilder.Entity("Domain.ExerciseSet", b =>
@@ -169,23 +129,6 @@ namespace Infrastructure.Persistence.Migrations
                     b.ToTable("ExerciseSets", null, t =>
                         {
                             t.HasCheckConstraint("CK_ExerciseSets_Grade", "[Grade] BETWEEN 7 AND 9");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Grade = 8,
-                            InterestId = 1,
-                            Title = "Øvesæt 1, Brøker, Fodbold",
-                            TopicId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Grade = 8,
-                            Title = "Øvesæt 1, Brøker, Standard",
-                            TopicId = 1
                         });
                 });
 
@@ -307,12 +250,17 @@ namespace Infrastructure.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Brøker"
+                            Name = "Handelsregning"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Procent"
+                            Name = "Brøk, decimaltal og procent"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Tid"
                         });
                 });
 

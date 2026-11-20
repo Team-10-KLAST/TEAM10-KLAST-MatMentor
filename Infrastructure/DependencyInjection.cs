@@ -1,14 +1,15 @@
-using Application.Features.ChatTutor.Conversations;
-using Application.Features.ChatTutor.AskTutor;
-using Infrastructure.AI;
 using Application.Common.Interfaces;
+using Application.Features.ChatTutor.AskTutor;
+using Application.Features.ChatTutor.Conversations;
 using Application.Features.ExerciseSets.CompleteExerciseSetAttempt;
 using Application.Features.ExerciseSets.StartExerciseSet;
 using Application.Features.ExerciseSets.SubmitAnswer;
 using Application.Features.Students.CreateStudentProfile;
 using Application.Features.Topics.GetTopics;
+using Infrastructure.AI;
 using Infrastructure.Identity;
 using Infrastructure.Persistence.ExerciseSets;
+using Infrastructure.Persistence.Seeding;
 using Infrastructure.Persistence.Students;
 using Infrastructure.Persistence.Topics;
 using Microsoft.AspNetCore.Identity;
@@ -24,7 +25,12 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+            .UseSeeding((context, _) => ExerciseSetSeeder.Seed(context))
+            .UseAsyncSeeding((context, _, cancellationToken) =>
+                ExerciseSetSeeder.SeedAsync(context, cancellationToken)));
+
+
 
 
         services.AddIdentityCore<ApplicationUser>(options =>

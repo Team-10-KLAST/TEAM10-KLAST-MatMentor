@@ -1,0 +1,1028 @@
+[
+  {
+    "title": "Mission: Åbn skolens pop-up-café!",
+    "grade": 7,
+    "topic": "Handelsregning",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Hvor mange småkager er der tilbage?\nKlassen har bagt småkager til caféen.\nDer er 7 bakker med 8 småkager på hver bakke.\nI det første frikvarter bliver der solgt 43 småkager.\nHvor mange småkager er der tilbage efter det første frikvarter?\nIndtast antal småkager.",
+        "correctAnswer": "13",
+        "unit": "småkager"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Popcorn på tilbud!\nCaféen har et tilbud: 3 poser popcorn for 25 kr.\nEn gruppe elever køber i alt 12 poser popcorn. Alle poserne bliver solgt til tilbudsprisen i grupper af tre.\nHvor mange kroner betaler eleverne tilsammen?\nIndtast dit svar i kroner.",
+        "correctAnswer": "100",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Kan vi tjene pengene hjem?\nKlassen har brugt 180 kr. på ingredienser til toast.\nI sælger hver toast for 15 kr. Der er ingen andre udgifter i denne opgave.\nHvor mange toast skal I mindst sælge, før salgsindtægterne dækker de 180 kr.?\nIndtast antal toast.",
+        "correctAnswer": "12",
+        "unit": "toast"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Find det bedste juicetilbud\nCaféen skal købe juicebrikker. Alle juicebrikkerne indeholder samme mængde juice.\nButikken har to muligheder:\n- 6 juicebrikker for 45 kr.\n- 10 juicebrikker for 60 kr.\nHvor mange kroner billigere er én juicebrik i pakken med 10 end i pakken med 6?\nIndtast dit svar i kroner.",
+        "correctAnswer": "1,5",
+        "unit": "kr"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Er der kopper nok?\nDer forventes 53 gæster i caféen. Hver gæst skal have én kop.\nCaféen har ingen kopper på lager, og butikken sælger kun hele pakker med 12 kopper i hver.\nHvor mange pakker skal I mindst købe, så alle 53 gæster kan få en kop?\nIndtast antal pakker.",
+        "correctAnswer": "5",
+        "unit": "pakker"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få skolens genbrugs- og designmarked til at lykkes!",
+    "grade": 8,
+    "topic": "Handelsregning",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Sidste chance for et kup!\nPå genbrugsmarkedet sælger klassen en hoodie til 240 kr.\nDen er stadig ikke solgt, så klassen beslutter at give 15 % rabat.\nHvor mange kroner skal en kunde betale for hoodien efter rabatten?\nIndtast dit svar i kroner.",
+        "correctAnswer": "204",
+        "unit": "kr"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Hvem har det bedste tilbud?\nKlassen skal bruge mindst 32 prisskilte til markedet.\nTo butikker har forskellige tilbud:\n- Butik A: 6 prisskilte for 54 kr.\n- Butik B: 10 prisskilte for 85 kr.\nButikkerne sælger kun hele pakker, og klassen vil købe alle prisskiltene i den samme butik.\nHvor mange kroner sparer klassen ved at vælge den butik, hvor de samlet skal betale mindst?\nIndtast dit svar i kroner.",
+        "correctAnswer": "16",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Hvor mange stofposer har vi råd til?\nKlassen vil sælge stofposer med markedets eget logo.\nDe har et budget på 500 kr. til at fremstille poserne.\nTrykkeriet tager et opstartsgebyr på 75 kr. for at trykke logoet. Gebyret betales kun én gang.\nDerefter koster hver stofpose 32 kr. at fremstille. Der er ingen andre udgifter.\nHvor mange hele stofposer kan klassen højst fremstille uden at overskride budgettet?\nIndtast antal stofposer.",
+        "correctAnswer": "13",
+        "unit": "stofposer"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Var notesbøgerne en god forretning?\nKlassen har lavet 18 notesbøger af genbrugspapir.\nHver notesbog koster 22 kr. at fremstille og bliver solgt for 45 kr.\nKlassen betaler desuden 140 kr. for at leje et salgsbord. Der er ingen andre udgifter til notesbøgerne.\nAlle 18 notesbøger bliver solgt.\nHvor mange kroner har klassen i overskud, når alle udgifterne til notesbøgerne og salgsbordet er betalt?\nIndtast dit svar i kroner.",
+        "correctAnswer": "274",
+        "unit": "kr"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Kan vi få råd til en ny bænk?\nGenbrugs- og designmarkedet er slut.\nHele markedet, inklusive salget fra de andre boder, har givet et samlet overskud på 1.650 kr.\nKlassen har aftalt, at 20 % af overskuddet skal bruges på nye planter til skolegården.\nResten vil de bruge på en bænk, som koster 1.400 kr.\nHvor mange kroner mangler klassen for at have råd til bænken, efter at pengene til planterne er sat til side?\nIndtast dit svar i kroner.",
+        "correctAnswer": "80",
+        "unit": "kr"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få skolens minifestival til at løbe rundt!",
+    "grade": 9,
+    "topic": "Handelsregning",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Hvor mange billetter mangler vi at sælge?\nFestivalen har allerede solgt 144 billetter.\nDet svarer til 80 % af alle de billetter, der er sat til salg.\nHvor mange billetter er endnu ikke solgt?\nIndtast antal billetter.",
+        "correctAnswer": "36",
+        "unit": "billetter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "To rabatter på én højttaler!\nFestivalen mangler en højttaler, som normalt koster 1.500 kr.\nButikken giver først 20 % rabat.\nVed kassen får skolen yderligere 10 % rabat på den pris, der allerede er sat ned.\nHvor mange kroner ender skolen med at betale for højttaleren efter begge rabatter?\nIndtast dit svar i kroner.",
+        "correctAnswer": "1080",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Smoothies til festivalens gæster\nFestivalens madbod skal servere smoothie til 45 gæster. Hver gæst skal have 200 ml smoothie.\nButikken sælger den samme smoothie i to flaskestørrelser:\n- En flaske med 400 ml koster 28 kr.\n- En flaske med 750 ml koster 46,50 kr.\nMadboden vil enten købe kun små flasker eller kun store flasker. Den køber det mindste antal hele flasker, der giver smoothie nok til alle 45 gæster.\nHvor mange kroner kan madboden spare ved at vælge den billigste af de to løsninger?\nIndtast dit svar i kroner.",
+        "correctAnswer": "86",
+        "unit": "kr"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Hvilket trykkeri skal vi vælge?\nFestivalen vil bestille armbånd til de frivillige.\nTo trykkerier har forskellige priser:\n- Trykkeri A: Et opstartsgebyr på 180 kr. og derefter 12 kr. pr. armbånd.\n- Trykkeri B: Et opstartsgebyr på 60 kr. og derefter 16 kr. pr. armbånd.\nFestivalen vil bestille alle armbåndene hos det samme trykkeri.\nVed hvilket antal armbånd bliver den samlede pris præcis den samme hos de to trykkerier?\nIndtast antal armbånd.",
+        "correctAnswer": "30",
+        "unit": "armbånd"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Kan vi nå vores overskudsmål?\nFestivalen vil sælge stofmærker med sit eget logo.\nDet koster 450 kr. én gang at få designet gjort klar.\nDerefter koster hvert stofmærke 18 kr. at fremstille, og det sælges for 38 kr.\nAlle fremstillede stofmærker bliver solgt, og der er ingen andre udgifter.\nFestivalen vil have et overskud på mindst 300 kr. fra stofmærkerne.\nHvor mange stofmærker skal festivalen mindst sælge for at nå sit overskudsmål?\nIndtast antal stofmærker.",
+        "correctAnswer": "38",
+        "unit": "stofmærker"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Gør klubben klar til weekendens fodboldstævne!",
+    "grade": 7,
+    "topic": "Handelsregning",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Vekselpenge i klubkiosken\nTre tilskuere køber hver en sandwich til 26 kr. i klubkiosken. De betaler tilsammen med en 100-kroneseddel.\nHvor mange kroner får de tilbage?\nIndtast dit svar i kr.",
+        "correctAnswer": "22",
+        "unit": "kr"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Fodboldene er på tilbud\nEn sportsbutik sælger 2 træningsbolde for 145 kr. Klubben skal købe 8 træningsbolde og kan købe alle boldene til tilbudsprisen.\nHvor mange kroner koster de 8 bolde i alt?\nIndtast dit svar i kr.",
+        "correctAnswer": "580",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Hjælp klubben med nye målnet\nEt sæt nye målnet koster 360 kr. Klubben har allerede samlet 90 kr. ind. Til stævnet sælger klubben støttearmbånd for 30 kr. stykket, og hele salgsprisen går til målnettene.\nHvor mange støttearmbånd skal klubben mindst sælge for at få råd til målnettene?\nIndtast antal støttearmbånd.",
+        "correctAnswer": "9",
+        "unit": "støttearmbånd"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Find den billigste pris pr. par\nHoldet skal købe nye træningsstrømper. To butikker sælger præcis samme slags strømper:\n- Butik A: 4 par for 130 kr.\n- Butik B: 6 par for 180 kr.\nHvor mange kroner billigere er ét par strømper i tilbuddet fra butik B end i tilbuddet fra butik A?\nIndtast dit svar i kr.",
+        "correctAnswer": "2,5",
+        "unit": "kr"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Medaljer til alle deltagere\nDer kommer 46 spillere til stævnet, og hver spiller skal have én medalje. Klubben har ingen medaljer på lager.\nMedaljer sælges kun i hele pakker med 8 medaljer. En pakke koster 55 kr.\nHvor mange kroner skal klubben mindst betale for at have medaljer nok til alle spillerne?\nIndtast dit svar i kr.",
+        "correctAnswer": "330",
+        "unit": "kr"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få holdets udebanetur til at hænge sammen!",
+    "grade": 8,
+    "topic": "Handelsregning",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Rabat på en fodboldtaske\nEn fodboldtaske koster normalt 480 kr. Sportsbutikken giver holdet 12,5 % rabat.\nHvor mange kroner koster tasken efter rabatten?\nIndtast dit svar i kr.",
+        "correctAnswer": "420",
+        "unit": "kr"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Kegler til træningen\nKlubben skal bruge mindst 37 træningskegler. To butikker har tilbud:\n- Butik A: 7 kegler for 68 kr.\n- Butik B: 12 kegler for 108 kr.\nButikkerne sælger kun hele pakker. Klubben vil købe alle keglerne i samme butik og vælger den laveste samlede pris.\nHvor mange kroner sparer klubben ved at vælge den billigste butik?\nIndtast dit svar i kr.",
+        "correctAnswer": "24",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Halstørklæder med klubbens logo\nKlubben har 1.100 kr. til at fremstille halstørklæder med klubbens logo.\nTrykkeriet tager et opstartsgebyr på 125 kr., som kun betales én gang. Derefter koster hvert halstørklæde 45 kr. at fremstille. Der er ingen andre udgifter.\nHvor mange hele halstørklæder kan klubben højst fremstille uden at overskride budgettet?\nIndtast antal halstørklæder.",
+        "correctAnswer": "21",
+        "unit": "halstørklæder"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Giver supporterarmbånd overskud?\nKlubben fremstiller 28 supporterarmbånd. Hvert armbånd koster 14 kr. at fremstille og sælges for 35 kr.\nKlubben betaler desuden 160 kr. for at leje en salgsstand. Der er ingen andre udgifter. Alle 28 armbånd bliver solgt.\nHvor mange kroner får klubben i overskud fra salget, når alle udgifter er betalt?\nIndtast dit svar i kr.",
+        "correctAnswer": "428",
+        "unit": "kr"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Er der penge nok til bussen?\nEn sponsor giver klubben 2.600 kr. Klubben har aftalt at bruge 15 % af sponsorbeløbet på nye træningsbolde.\nResten skal bruges til en bus, der koster 2.350 kr. Klubben har ikke andre penge til bussen.\nHvor mange kroner mangler klubben for at kunne betale bussen?\nIndtast dit svar i kr.",
+        "correctAnswer": "140",
+        "unit": "kr"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Planlæg klubbens talentcup uden underskud!",
+    "grade": 9,
+    "topic": "Handelsregning",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Hvor mange pladser er ledige?\nKlubben har solgt 168 billetter til talentcuppen. Det svarer til 70 % af alle de billetter, der er sat til salg.\nHvor mange billetter er endnu ikke solgt?\nIndtast antal billetter.",
+        "correctAnswer": "72",
+        "unit": "billetter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "To rabatter på en måltavle\nKlubben skal købe en elektronisk måltavle, der normalt koster 1.600 kr.\nButikken giver først 15 % rabat. Derefter får klubben yderligere 5 % rabat på den allerede nedsatte pris.\nHvor mange kroner skal klubben betale efter begge rabatter?\nIndtast dit svar i kr.",
+        "correctAnswer": "1292",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Drikke til spillerpausen\nDer deltager 42 spillere i talentcuppen. Klubben vil have 300 ml saftevand klar til hver spiller.\nButikken sælger den samme slags saftevand i to størrelser:\n- En flaske med 750 ml koster 17 kr.\n- En flaske med 2 liter koster 39 kr.\nKlubben vil enten købe kun små flasker eller kun store flasker. I begge tilfælde køber den det mindste antal hele flasker, der giver nok saftevand til alle 42 spillere.\nHvor mange kroner sparer klubben ved at vælge den billigste af de to løsninger?\nIndtast dit svar i kr.",
+        "correctAnswer": "16",
+        "unit": "kr"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Hvilket trykkeri bliver billigst?\nKlubben vil bestille stofarmbånd med talentcuppens logo. To trykkerier tilbyder:\n- Trykkeri A: Et opstartsgebyr på 260 kr. og derefter 18 kr. pr. armbånd.\n- Trykkeri B: Et opstartsgebyr på 100 kr. og derefter 26 kr. pr. armbånd.\nKlubben bestiller alle armbånd hos det samme trykkeri.\nVed hvilket antal armbånd er den samlede pris præcis den samme hos begge trykkerier?\nIndtast antal armbånd.",
+        "correctAnswer": "20",
+        "unit": "armbånd"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Kan klubben nå sit overskudsmål?\nTil talentcuppen vil klubben sælge T-shirts med klubbens logo. Det koster 440 kr. én gang at gøre designet klar.\nDerefter koster hver T-shirt 38 kr. at fremstille, og den bliver solgt for 65 kr. Alle fremstillede T-shirts bliver solgt, og der er ingen andre udgifter.\nKlubben vil have et overskud på mindst 250 kr. fra T-shirtsene.\nHvor mange T-shirts skal klubben mindst sælge for at nå målet?\nIndtast antal T-shirts.",
+        "correctAnswer": "26",
+        "unit": "T-shirts"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Gør rideklubben klar til stævnedagen!",
+    "grade": 7,
+    "topic": "Handelsregning",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Vekselpenge i stævnekiosken\nTre gæster køber hver en bolle til 18 kr. i rideklubbens kiosk. De betaler tilsammen med 100 kr.\nHvor mange kroner får de tilbage?\nIndtast dit svar i kroner.",
+        "correctAnswer": "46",
+        "unit": "kr"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Strigler på tilbud\nEn butik sælger 2 strigler for 95 kr. Rideklubben skal bruge 8 strigler og kan købe dem alle til tilbudsprisen.\nHvor mange kroner skal rideklubben betale i alt?\nIndtast dit svar i kroner.",
+        "correctAnswer": "380",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Penge til en ny trillebør\nRideklubben vil købe en trillebør til 400 kr. Klubben har allerede samlet 145 kr. ind. Til stævnet sælger de hjemmelavede rosetter for 35 kr. stykket, og hele salgsprisen går til trillebøren.\nHvor mange rosetter skal de mindst sælge for at få råd til trillebøren?\nIndtast antal rosetter.",
+        "correctAnswer": "8",
+        "unit": "rosetter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Sammenlign prisen på ridehandsker\nTo butikker sælger samme slags ridehandsker i pakker. Butik A sælger 3 par for 114 kr. Butik B sælger 5 par for 175 kr.\nHvor mange kroner billigere er ét par i butik B end i butik A?\nIndtast dit svar i kroner.",
+        "correctAnswer": "3",
+        "unit": "kr"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Præmier til rytterne\nDer kommer 39 ryttere til stævnet. Hver rytter skal have én medalje. Klubben har ingen medaljer på lager. Butikken sælger kun pakker med 6 medaljer til 48 kr. pr. pakke.\nHvor mange kroner skal klubben mindst betale for medaljer nok?\nIndtast dit svar i kroner.",
+        "correctAnswer": "336",
+        "unit": "kr"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få ridelejrens økonomi til at hænge sammen!",
+    "grade": 8,
+    "topic": "Handelsregning",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Rabat på en ridejakke\nEn ridejakke koster normalt 640 kr. Rideklubbens medlemmer får 12,5 % rabat.\nHvor mange kroner koster jakken efter rabatten?\nIndtast dit svar i kroner.",
+        "correctAnswer": "560",
+        "unit": "kr"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Sikkerhedsmærker til stalden\nRideklubben skal bruge mindst 37 sikkerhedsmærker til skabe og udstyr. Butik A sælger 7 mærker for 70 kr.; butik B sælger 12 mærker for 108 kr. Der sælges kun hele pakker, og alle mærker købes hos den samme butik.\nHvor mange kroner sparer klubben ved at vælge den laveste samlede indkøbspris?\nIndtast dit svar i kroner.",
+        "correctAnswer": "12",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Hvor mange nummerunderlag?\nKlubben har 1.250 kr. til nummerunderlag til rytterne. Trykkeriet tager et engangsgebyr på 145 kr. og derefter 48 kr. pr. nummerunderlag. Der er ingen andre udgifter.\nHvor mange hele nummerunderlag kan klubben højst få lavet inden for budgettet?\nIndtast antal nummerunderlag.",
+        "correctAnswer": "23",
+        "unit": "nummerunderlag"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Overskud i rideklubbens bod\nKlubben fremstiller 26 nøgleringe med hestemotiv. Hver nøglering koster 29 kr. at fremstille og sælges for 62 kr. Klubben betaler også 280 kr. for boden. Alle 26 sælges, og der er ingen andre udgifter.\nHvor mange kroner bliver overskuddet?\nIndtast dit svar i kroner.",
+        "correctAnswer": "578",
+        "unit": "kr"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Er der penge nok til nye bomme?\nEt ridestævne har givet et samlet overskud på 3.100 kr. Klubben afsætter 20 % til reparationer og vil bruge resten på nye springbomme til 2.750 kr.\nHvor mange kroner mangler klubben for at kunne betale springbommene?\nIndtast dit svar i kroner.",
+        "correctAnswer": "270",
+        "unit": "kr"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Planlæg rideklubbens store forårsstævne!",
+    "grade": 9,
+    "topic": "Handelsregning",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Hvor mange pladser er ledige?\nRideklubben har solgt 175 tilskuerbilletter til stævnet. Det svarer til 70 % af alle de billetter, der er sat til salg.\nHvor mange billetter er endnu ikke solgt?\nIndtast antal billetter.",
+        "correctAnswer": "75",
+        "unit": "billetter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "To rabatter på en sadel\nEn sadel koster normalt 2.000 kr. Rideklubben får først 15 % rabat og derefter yderligere 10 % rabat på den nedsatte pris.\nHvor mange kroner skal rideklubben betale?\nIndtast dit svar i kroner.",
+        "correctAnswer": "1530",
+        "unit": "kr"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Foder nok til stalden\nKlubben skal bruge mindst 24 kg af et bestemt tilskudsfoder. Det samme foder sælges i sække med 6 kg til 105 kr. eller sække med 10 kg til 165 kr. Klubben køber kun én sækkestørrelse og vælger i begge tilfælde færrest mulige hele sække.\nHvor mange kroner sparer klubben ved at vælge den billigste samlede løsning?\nIndtast dit svar i kroner.",
+        "correctAnswer": "75",
+        "unit": "kr"
+      },
+      {
+        "position": 4,
+        "exerciseText": "To leverandører af startnumre\nRideklubben skal bestille startnumre til rytterne. Leverandør A tager et engangsgebyr på 280 kr. og derefter 17 kr. pr. startnummer.\nLeverandør B tager et engangsgebyr på 100 kr. og derefter 23 kr. pr. startnummer.\nVed hvilket antal startnumre er den samlede pris ens hos begge leverandører?\nIndtast antal startnumre.",
+        "correctAnswer": "30",
+        "unit": "startnumre"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Et overskudsmål for klubtrøjer\nKlubben vil sælge T-shirts med hestemotiv. Det koster 490 kr. én gang at forberede trykket. Derefter koster hver T-shirt 42 kr. at fremstille og sælges for 70 kr. Alle fremstillede T-shirts bliver solgt, og der er ingen andre udgifter. Klubben ønsker et overskud på mindst 370 kr.\nHvor mange T-shirts skal klubben mindst sælge for at nå målet?\nIndtast antal T-shirts.",
+        "correctAnswer": "31",
+        "unit": "T-shirts"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Planlæg klassens aktivitetsdag!",
+    "grade": 7,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Hvem vil spille brætspil?\nDer er 28 elever i klassen. En fjerdedel har valgt brætspil som den første aktivitet.\nHvor mange elever har valgt brætspil?\nIndtast antal elever.",
+        "correctAnswer": "7",
+        "unit": "elever"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Saftevand til pausen\nKlassen har tre kander med henholdsvis 1,25 liter, 0,75 liter og 1,50 liter saftevand.\nHvor mange liter saftevand er der i alt?\nIndtast dit svar i liter.",
+        "correctAnswer": "3,5",
+        "unit": "liter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Svar i procent\n20 elever har stemt om en aktivitet. 6 af eleverne valgte tegneværkstedet.\nHvor mange procent af de 20 elever valgte tegneværkstedet?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "30",
+        "unit": "procent"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Tid med kreative aktiviteter\nKlassen har 32 minutter til en aktivitet. Tre fjerdedele af tiden skal bruges på at lave plakater.\nHvor mange minutter skal de lave plakater?\nIndtast dit svar i minutter.",
+        "correctAnswer": "24",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Find resten\nKlassen har 60 klemmer til at hænge tegninger op. De bruger 40 % af klemmerne ved den første udstilling.\nHvor mange klemmer har klassen tilbage?\nIndtast antal klemmer.",
+        "correctAnswer": "36",
+        "unit": "klemmer"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Gør skolens udstilling klar!",
+    "grade": 8,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Plakater til udstillingen\nSkolen har lavet 48 plakater. Tre ottendedele er allerede hængt op i gangen.\nHvor mange plakater er hængt op?\nIndtast antal plakater.",
+        "correctAnswer": "18",
+        "unit": "plakater"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Maling til dekorationen\nEn gruppe bruger 0,75 liter blå maling, 1,25 liter gul maling og 1,40 liter hvid maling.\nHvor mange liter maling bruger gruppen i alt?\nIndtast dit svar i liter.",
+        "correctAnswer": "3,4",
+        "unit": "liter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Invitationer til forældre\nDer er trykt 240 invitationer. 15 % er blevet delt ud om morgenen.\nHvor mange invitationer blev delt ud om morgenen?\nIndtast antal invitationer.",
+        "correctAnswer": "36",
+        "unit": "invitationer"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Hvor mange gæster er der plads til?\nTil udstillingen er der allerede tilmeldt 56 gæster. De udgør 70 % af de pladser, der er sat af.\nHvor mange gæster er der plads til i alt?\nIndtast antal gæster.",
+        "correctAnswer": "80",
+        "unit": "gæster"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Hvor stor en del mangler?\nEleverne har gjort to femtedele af udstillingen klar mandag og yderligere 0,35 af hele udstillingen tirsdag. De to dele overlapper ikke.\nHvor mange procent af hele udstillingen mangler stadig?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "25",
+        "unit": "procent"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Gør skolens miljøuge målbar!",
+    "grade": 9,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Flere deltagere i år\nSidste år deltog 240 elever i miljøugen. I år deltager 276 elever.\nHvor mange procent er deltagertallet steget i forhold til sidste år?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "15",
+        "unit": "procent"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Find det samlede antal\nFem ottendedele af alle indsamlede batterier svarer til 90 batterier.\nHvor mange batterier er der samlet i alt?\nIndtast antal batterier.",
+        "correctAnswer": "144",
+        "unit": "batterier"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Hvor stor en andel mangler?\nAf alle arbejdsopgaverne er 0,35 løst mandag og to femtedele løst tirsdag. Ingen opgave er talt med to gange.\nHvor mange procent af opgaverne mangler stadig at blive løst?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "25",
+        "unit": "procent"
+      },
+      {
+        "position": 4,
+        "exerciseText": "To procentændringer efter hinanden\nSkolens energiforbrug er først 200 kWh. Efter en ændring falder forbruget med 15 %. Derefter stiger det nye forbrug med 10 %.\nHvor mange kWh er forbruget efter begge ændringer?\nIndtast dit svar i kWh.",
+        "correctAnswer": "187",
+        "unit": "kWh"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Sortering af materialer\n12 kg papir udgør 30 % af alt det affald, som klassen har samlet. De sorterer derefter tre femtedele af den samlede affaldsmængde til genbrug.\nHvor mange kg affald er der tilbage, som ikke er sorteret til genbrug?\nIndtast dit svar i kg.",
+        "correctAnswer": "16",
+        "unit": "kg"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Hold styr på dagens fodboldtræning!",
+    "grade": 7,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Målmandstræning\nDer er 20 spillere på træningsbanen. En fjerdedel deltager først i afslutningsøvelser.\nHvor mange spillere deltager i afslutningsøvelserne?\nIndtast antal spillere.",
+        "correctAnswer": "5",
+        "unit": "spillere"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Vand til spillerne\nTræneren fylder tre dunke med henholdsvis 1,50 liter, 0,75 liter og 0,50 liter vand.\nHvor mange liter vand er der i de tre dunke i alt?\nIndtast dit svar i liter.",
+        "correctAnswer": "2,75",
+        "unit": "liter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Skud på mål\nHoldet har 30 afslutninger under træningen. 9 af afslutningerne rammer målet.\nHvor mange procent af afslutningerne rammer målet?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "30",
+        "unit": "procent"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Afleveringer der lykkes\nEn spiller prøver 25 afleveringer. 0,6 af afleveringerne når frem til en medspiller.\nHvor mange afleveringer lykkes?\nIndtast antal afleveringer.",
+        "correctAnswer": "15",
+        "unit": "afleveringer"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Billetter til kampen\nKlubben har 40 fribilletter til næste kamp. Tre femtedele bliver givet til ungdomsholdet.\nHvor mange fribilletter får ungdomsholdet?\nIndtast antal billetter.",
+        "correctAnswer": "24",
+        "unit": "billetter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Analyser fodboldakademiets sæson!",
+    "grade": 8,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Gode afslutninger\nEn spiller tager 64 afslutninger under træningen. Tre ottendedele går inden for målets ramme.\nHvor mange afslutninger går inden for målets ramme?\nIndtast antal afslutninger.",
+        "correctAnswer": "24",
+        "unit": "afslutninger"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Løb på træningslejren\nSpillerne løber først 1,80 km og senere yderligere 2,35 km.\nHvor mange kilometer løber de i alt?\nIndtast dit svar i km.",
+        "correctAnswer": "4,15",
+        "unit": "km"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Supporterbilletter\nKlubben har 150 billetter til rådighed. 18 % af billetterne reserveres til unge spillere.\nHvor mange billetter reserveres?\nIndtast antal billetter.",
+        "correctAnswer": "27",
+        "unit": "billetter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Find antal afslutninger\nVed en træning rammer 54 afslutninger målet. Det svarer til 72 % af alle afslutningerne.\nHvor mange afslutninger blev der lavet i alt?\nIndtast antal afslutninger.",
+        "correctAnswer": "75",
+        "unit": "afslutninger"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Hvor stor en del er tilbage?\nAf trænerens planlagte øvelser bliver to femtedele gennemført før pausen og 0,35 af alle øvelserne efter pausen. Der er ikke overlap mellem grupperne.\nHvor mange procent af øvelserne mangler stadig?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "25",
+        "unit": "procent"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Vurder holdets sæsonstatistik!",
+    "grade": 9,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Sejrsprocent\nHoldet har spillet 16 kampe, hvoraf det vandt 12.\nHvor mange procent af kampene vandt holdet?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "75",
+        "unit": "procent"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Find antal afleveringer\nTre ottendedele af holdets afleveringer i en kamp svarer til 45 afleveringer.\nHvor mange afleveringer havde holdet i alt?\nIndtast antal afleveringer.",
+        "correctAnswer": "120",
+        "unit": "afleveringer"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Træningens tre dele\nTil en træningsdag bruger holdet 0,35 af tiden på teknik og to femtedele af tiden på spiløvelser. Delene overlapper ikke.\nHvor mange procent af træningsdagen er tilbage til andre øvelser?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "25",
+        "unit": "procent"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Stigende tilskuertal\nTil en kamp kom 240 tilskuere. Til næste kamp kom 276 tilskuere.\nHvor mange procent steg tilskuertallet i forhold til første kamp?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "15",
+        "unit": "procent"
+      },
+      {
+        "position": 5,
+        "exerciseText": "To ændringer i medlemsantal\nKlubben har 800 medlemmer. Antallet stiger først med 15 %. Derefter falder antallet med 10 % af det nye medlemstal.\nHvor mange medlemmer er der efter begge ændringer?\nIndtast antal medlemmer.",
+        "correctAnswer": "828",
+        "unit": "medlemmer"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Hjælp til på rideskolens stalddag!",
+    "grade": 7,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Ponyer i folden\nRideskolen har 18 ponyer. En tredjedel er lukket på den lille fold.\nHvor mange ponyer går på den lille fold?\nIndtast antal ponyer.",
+        "correctAnswer": "6",
+        "unit": "ponyer"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Foder i to spande\nEn foderspand indeholder 1,25 kg foder, og en anden indeholder 0,75 kg af samme foder.\nHvor mange kg er der tilsammen?\nIndtast dit svar i kg.",
+        "correctAnswer": "2",
+        "unit": "kg"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Ryttere med egen hjelm\nTil stalddagen kommer 20 elever. 8 af dem har deres egen ridehjelm med.\nHvor mange procent har egen hjelm med?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "40",
+        "unit": "procent"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Hønet der er klargjort\nRideskolen skal gøre 28 hønet klar. 0,75 af hønettene er allerede fyldt.\nHvor mange hønet er fyldt?\nIndtast antal hønet.",
+        "correctAnswer": "21",
+        "unit": "hønet"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Mærker til udstyret\nKlubben har 35 navnemærker til rideudstyret. To femtedele af mærkerne bruges til sadler.\nHvor mange mærker bruges til sadlerne?\nIndtast antal mærker.",
+        "correctAnswer": "14",
+        "unit": "mærker"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Brug tallene fra rideskolens træningsdag!",
+    "grade": 8,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Deltagere på springholdet\nRideskolen har 40 deltagere på træningsdagen. Fem ottendedele deltager i springtræningen.\nHvor mange deltagere er på springholdet?\nIndtast antal deltagere.",
+        "correctAnswer": "25",
+        "unit": "deltagere"
+      },
+      {
+        "position": 2,
+        "exerciseText": "To rideture\nEn gruppe rider først 1,75 km og efter pausen yderligere 2,60 km.\nHvor mange kilometer rider gruppen i alt?\nIndtast dit svar i km.",
+        "correctAnswer": "4,35",
+        "unit": "km"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Pladser til begyndere\nDer er 240 pladser fordelt på rideskolens forskellige aktiviteter. 12,5 % af pladserne er reserveret til begyndere.\nHvor mange pladser er reserveret til begyndere?\nIndtast antal pladser.",
+        "correctAnswer": "30",
+        "unit": "pladser"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Hvor mange startede?\nEfter den første træningsrunde er 30 ryttere færdige. Det svarer til 60 % af alle rytterne.\nHvor mange ryttere deltog i alt?\nIndtast antal ryttere.",
+        "correctAnswer": "50",
+        "unit": "ryttere"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Tid til afslutning\nAf en træningsperiode på 60 minutter bruges tre tiendedele på opvarmning og 0,45 af hele perioden på øvelser. Aktiviteterne overlapper ikke.\nHvor mange minutter er der tilbage til afslutning?\nIndtast dit svar i minutter.",
+        "correctAnswer": "15",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Analyser rideklubbens stævnetal!",
+    "grade": 9,
+    "topic": "Brøk, decimaltal og procent",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Andel med fejlfri runde\nVed et stævne gennemfører 21 ud af 28 ryttere banen uden fejl.\nHvor mange procent af rytterne rider fejlfrit?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "75",
+        "unit": "procent"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Find det samlede antal ryttere\nFem ottendedele af rytterne i en konkurrencerække svarer til 35 ryttere.\nHvor mange ryttere deltager i rækken i alt?\nIndtast antal ryttere.",
+        "correctAnswer": "56",
+        "unit": "ryttere"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Fordeling af træningstid\nKlubben bruger 0,25 af træningstiden på opvarmning og to femtedele på rideøvelser. De to dele overlapper ikke.\nHvor mange procent af træningstiden er tilbage?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "35",
+        "unit": "procent"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Flere stævnedeltagere\nSidste år deltog 180 ryttere i klubbens stævne. I år deltager 207 ryttere.\nHvor mange procent er deltagerantallet steget?\nIndtast dit svar som et tal i procent, uden %-tegn.",
+        "correctAnswer": "15",
+        "unit": "procent"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Ændret vandforbrug\nRideklubben bruger normalt 600 liter vand på en bestemt aktivitet. Først reduceres forbruget med 10 %. Senere stiger det reducerede forbrug med 5 %.\nHvor mange liter bruges efter begge ændringer?\nIndtast dit svar i liter.",
+        "correctAnswer": "567",
+        "unit": "liter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få skolens aktivitetsdag til at passe!",
+    "grade": 7,
+    "topic": "Tid",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Fra timer til minutter\nEn aktivitet varer 2 timer og 15 minutter.\nHvor mange minutter varer aktiviteten i alt?\nIndtast dit svar i minutter.",
+        "correctAnswer": "135",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Tid i værkstedet\nEt værksted begynder kl. 09.10 og slutter kl. 10.05 samme dag.\nHvor mange minutter varer værkstedet?\nIndtast dit svar i minutter.",
+        "correctAnswer": "55",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Fire korte workshops\nKlassen deltager i fire workshops, der hver varer 35 minutter. Mellem workshopperne er der tre pauser på 10 minutter.\nHvor mange minutter varer hele programmet inklusive pauser?\nIndtast dit svar i minutter.",
+        "correctAnswer": "170",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Tid til at tegne\nDer er sat 120 minutter af til en aktivitet. En fjerdedel af tiden går med at tegne.\nHvor mange minutter bruges på at tegne?\nIndtast dit svar i minutter.",
+        "correctAnswer": "30",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Hvor lang er busturen?\nEn bus kører fra skolen kl. 12.45 og når frem kl. 14.20 samme dag.\nHvor mange minutter varer turen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "95",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få værkstedernes tidsplan til at fungere!",
+    "grade": 8,
+    "topic": "Tid",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Lang workshop\nEt værksted varer 2 timer og 45 minutter.\nHvor mange minutter varer værkstedet?\nIndtast dit svar i minutter.",
+        "correctAnswer": "165",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Tid til prøven\nEn prøve begynder kl. 14.35 og slutter kl. 16.20 samme dag.\nHvor mange minutter varer prøven?\nIndtast dit svar i minutter.",
+        "correctAnswer": "105",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Skift mellem stationer\nFire hold skal hver gennemføre et forløb på 40 minutter. Der er tre skift mellem forløbene, og hvert skift tager 7 minutter. Forløbene gennemføres efter hinanden.\nHvor mange minutter tager hele programmet?\nIndtast dit svar i minutter.",
+        "correctAnswer": "181",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Filmen og samtalen\nEn film varer 1,5 time. Efter filmen er der 35 minutters fælles samtale.\nHvor mange minutter varer film og samtale tilsammen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "125",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Er der tid til mere?\nKlassen har 4 timer til gruppearbejde. Tre grupper skal bruge lokalet efter hinanden, og hver gruppe har brug for 1 time og 15 minutter. Der er ingen pauser mellem grupperne.\nHvor mange minutter er lokalet ledigt, når alle grupper er færdige?\nIndtast dit svar i minutter.",
+        "correctAnswer": "15",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Planlæg skolens studietur uden forsinkelser!",
+    "grade": 9,
+    "topic": "Tid",
+    "interest": null,
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Rejsen fortsætter efter midnat\nEn bus kører fra skolen kl. 22.45 og ankommer kl. 01.20 næste dag.\nHvor mange minutter varer turen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "155",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Tid på motorvejen\nBussen til studieturen skal køre 144 km. Den kører med en konstant gennemsnitsfart på 64 km/t og holder ingen pauser på strækningen.\nHvor mange minutter tager strækningen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "135",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Tog, ventetid og bus\nKlassen tager et tog fra kl. 08.20 til kl. 10.05. Derefter venter de 25 minutter på bussen, som kører i 1 time og 35 minutter.\nHvor mange minutter går der fra toget kører, til busrejsen er slut?\nIndtast dit svar i minutter.",
+        "correctAnswer": "225",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Hvor mange grupper kan nå rundvisningen?\nEn rundvisning har højst 180 minutter til rådighed. Først bruges 20 minutter på en fælles introduktion. Derefter tager det 13 minutter at vise hver gruppe rundt, én gruppe ad gangen.\nHvor mange hele grupper kan højst få en rundvisning inden for tidsrammen?\nIndtast antal grupper.",
+        "correctAnswer": "12",
+        "unit": "grupper"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Hvor meget tid er der tilbage?\nStudieturens sidste program begynder kl. 11.30 og skal være færdigt senest kl. 15.30. Programmet består af fire workshops på 45 minutter og tre pauser på 12 minutter.\nHvor mange minutter er der tilbage inden fristen, når alle workshops og pauser er gennemført?\nIndtast dit svar i minutter.",
+        "correctAnswer": "24",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få holdets træningslørdag til at passe!",
+    "grade": 7,
+    "topic": "Tid",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Opvarmning og afleveringer\nHoldet varmer op i 15 minutter og træner afleveringer i 35 minutter.\nHvor mange minutter træner holdet i alt?\nIndtast dit svar i minutter.",
+        "correctAnswer": "50",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Hvornår slutter træningen?\nTræningen begynder kl. 16.20 og slutter kl. 17.35 samme dag.\nHvor mange minutter varer træningen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "75",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Tre små kampe\nHoldet spiller tre træningskampe på 20 minutter hver. Der er en pause på 5 minutter mellem hver kamp.\nHvor mange minutter varer kampene og pauserne tilsammen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "70",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "En lang træning\nEn træning varer 1 time og 40 minutter.\nHvor mange minutter varer træningen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "100",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Tid til at gøre sig klar\nSpillerne er færdige med at klæde om kl. 17.25. Deres næste aktivitet begynder kl. 18.10 samme dag.\nHvor mange minutter er der mellem de to tidspunkter?\nIndtast dit svar i minutter.",
+        "correctAnswer": "45",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Lav en præcis tidsplan for træningslejren!",
+    "grade": 8,
+    "topic": "Tid",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Hvor meget længere?\nDen ene træning varer 90 minutter. Den anden varer 1 time og 20 minutter.\nHvor mange minutter er den første træning længere end den anden?\nIndtast dit svar i minutter.",
+        "correctAnswer": "10",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Morgentræningen\nTræningen begynder kl. 09.50 og slutter kl. 11.25.\nHvor mange minutter varer den?\nIndtast dit svar i minutter.",
+        "correctAnswer": "95",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Tre træningspas\nHoldet gennemfører tre træningspas på 45 minutter. Mellem passene er der to pauser på 15 minutter.\nHvor mange minutter varer hele forløbet inklusive pauser?\nIndtast dit svar i minutter.",
+        "correctAnswer": "165",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Decimaltimer på træningslejren\nHoldets samlede træningstid en dag er 2,5 timer.\nHvor mange minutter svarer det til?\nIndtast dit svar i minutter.",
+        "correctAnswer": "150",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Plads i tidsplanen\nHoldet har 4 timer til rådighed. De vil lave tre øvelsesblokke på 55 minutter og holde to pauser på 20 minutter.\nHvor mange minutter er der tilbage til sidst?\nIndtast dit svar i minutter.",
+        "correctAnswer": "35",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Styr tid og transport til klubbens aftencup!",
+    "grade": 9,
+    "topic": "Tid",
+    "interest": "Fodbold",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Den sene hjemtur\nHoldbussen kører fra stadion kl. 22.50 og når klubhuset kl. 00.15 næste dag.\nHvor mange minutter varer hjemturen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "85",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Bus til udekampen\nHoldet skal køre 150 km til en udekamp. Bussen holder en konstant gennemsnitsfart på 75 km/t og har en pause på 20 minutter undervejs.\nHvor mange minutter tager køreturen inklusive pausen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "140",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Turneringens tre kampe\nHoldet spiller tre kampe på 70 minutter hver. Der er 20 minutters pause mellem kampene.\nHvor mange minutter varer kampene og pauserne tilsammen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "250",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Tid på banen\nAf en samlet træningstid på 160 minutter går 25 % til pauser og instruktion.\nHvor mange minutter er der tilbage til egentlige øvelser?\nIndtast dit svar i minutter.",
+        "correctAnswer": "120",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Er de færdige før middag?\nTurneringen begynder kl. 09.10. Holdet skal gennemføre tre kampe på 55 minutter og har to pauser på 25 minutter. Kampene og pauserne følger efter hinanden.\nHvor mange minutter efter kl. 12.00 slutter holdets program?\nIndtast dit svar i minutter.",
+        "correctAnswer": "45",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få stalddagens program til at passe!",
+    "grade": 7,
+    "topic": "Tid",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Strigling og ridning\nEn rytter bruger 25 minutter på at strigle ponyen og rider derefter i 40 minutter.\nHvor mange minutter går der tilsammen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "65",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Fra stald til ridebane\nEn træningslektion begynder kl. 09.35 og slutter kl. 10.50 samme dag.\nHvor mange minutter varer lektionen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "75",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Tre korte rideøvelser\nEn gruppe laver tre rideøvelser på 20 minutter hver. Mellem øvelserne holder de to pauser på 10 minutter.\nHvor mange minutter varer øvelserne og pauserne tilsammen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "80",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Lang dag i stalden\nEn rytter er i stalden i 2 timer og 25 minutter.\nHvor mange minutter er det?\nIndtast dit svar i minutter.",
+        "correctAnswer": "145",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Tid til springtræning\nRideskolen har 90 minutter til et træningsprogram. En tredjedel af tiden er sat af til springøvelser.\nHvor mange minutter er der sat af til springøvelserne?\nIndtast dit svar i minutter.",
+        "correctAnswer": "30",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Få rideskolens træningsdag til at gå op!",
+    "grade": 8,
+    "topic": "Tid",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Tid på ridebanen\nEn samlet træning varer 2,25 timer.\nHvor mange minutter varer træningen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "135",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Eftermiddagens lektion\nEn ridetime begynder kl. 13.45 og slutter kl. 15.30 samme dag.\nHvor mange minutter varer lektionen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "105",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Tid til hele rutinen\nEn rytter bruger 25 minutter på at gøre ponyen klar, 50 minutter på at ride og 15 minutter på at køle ponyen ned efter træningen.\nHvor mange minutter varer hele rutinen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "90",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Tre hold på den samme bane\nTre ridehold skal træne efter hinanden, hvert hold i 45 minutter. Mellem holdene bruges 10 minutter på at gøre banen klar igen.\nHvor mange minutter varer hele programmet?\nIndtast dit svar i minutter.",
+        "correctAnswer": "155",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "En del af ridelejren\nEn træningsdag varer 2 timer og 40 minutter. Fem ottendedele af tiden bruges på ridning.\nHvor mange minutter bruges på ridning?\nIndtast dit svar i minutter.",
+        "correctAnswer": "100",
+        "unit": "minutter"
+      }
+    ]
+  },
+  {
+    "title": "Mission: Planlæg ridestævnets tidskrævende transport!",
+    "grade": 9,
+    "topic": "Tid",
+    "interest": "Ridning",
+    "exercises": [
+      {
+        "position": 1,
+        "exerciseText": "Traileren kommer frem efter midnat\nEn hestetrailer kører fra rideklubben kl. 23.30 og ankommer kl. 02.05 næste dag.\nHvor mange minutter varer køreturen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "155",
+        "unit": "minutter"
+      },
+      {
+        "position": 2,
+        "exerciseText": "Hvor længe kører traileren?\nEn trailer skal køre 36 km på en mindre vej. Den holder en konstant gennemsnitsfart på 24 km/t, og der er ingen pauser.\nHvor mange minutter varer køreturen?\nIndtast dit svar i minutter.",
+        "correctAnswer": "90",
+        "unit": "minutter"
+      },
+      {
+        "position": 3,
+        "exerciseText": "Tid på konkurrencebanen\nFire klasser skal ride efter hinanden. Hver klasse får 50 minutter på banen. Mellem klasserne skal banen ordnes i 15 minutter.\nHvor mange minutter tager hele programmet inklusive klargøringerne?\nIndtast dit svar i minutter.",
+        "correctAnswer": "245",
+        "unit": "minutter"
+      },
+      {
+        "position": 4,
+        "exerciseText": "Ventetid og ridetid\nEn træningsdag varer 175 minutter. 20 % af tiden går med ventetid og pauser.\nHvor mange minutter bruges på aktiviteter uden pauser?\nIndtast dit svar i minutter.",
+        "correctAnswer": "140",
+        "unit": "minutter"
+      },
+      {
+        "position": 5,
+        "exerciseText": "Hvornår er stævnedagen færdig?\nDagens program begynder kl. 08.45. Det består af tre konkurrencer på 1 time og 5 minutter hver samt to pauser på 15 minutter.\nKonkurrencerne og pauserne følger efter hinanden.\nHvor mange minutter efter kl. 12.00 slutter programmet?\nIndtast dit svar i minutter.",
+        "correctAnswer": "30",
+        "unit": "minutter"
+      }
+    ]
+  }
+]
