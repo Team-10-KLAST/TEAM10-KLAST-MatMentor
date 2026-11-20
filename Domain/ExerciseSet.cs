@@ -20,4 +20,10 @@ public class ExerciseSet
         TopicId = topicId;
         InterestId = interestId;
     }
+
+    // Adds an exercise to the set. EF Core sets ExerciseSetId when the set is saved
+    public void AddExercise(int position, string exerciseText, string correctAnswer, string? unit, int topicId)
+    {
+        _exercises.Add(new Exercise(position, exerciseText, correctAnswer, unit, Id, topicId));
+    }
 }

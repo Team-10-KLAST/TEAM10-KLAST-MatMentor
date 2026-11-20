@@ -19,7 +19,7 @@ Content-Type: application/json
 
 { "username": "standardtest", "password": "hemmelig1" }
 
-### AK3.2 Elev uden interesse får standard-øvesæt — forventet 201, "Øvesæt 1, Brøker, Standard"
+### AK3.2 Elev uden interesse får standard-øvesæt — forventet 201, "Mission: Få skolens genbrugs og designmarked til at lykkes!"
 # @name start
 POST {{host}}/api/exercise-set-attempts
 Authorization: Bearer {{loginStandard.response.body.$.token}}
