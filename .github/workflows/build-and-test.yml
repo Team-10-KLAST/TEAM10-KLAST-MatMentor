@@ -1,0 +1,47 @@
+# Builds the backend and runs the unit tests.
+# Runs on every pull request to main, so the result shows up on the
+# pull request before it is merged, and again after each merge to main.
+# Can also be started manually from the Actions tab.
+name: Build and test
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# The workflow's token only gets the rights it needs: read the code.
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    # This name becomes the status check that main requires later.
+    # Do not rename it once the check is required.
+    name: Build and run unit tests
+    runs-on: ubuntu-latest
+    # Stop the job if it hangs, instead of waiting for the default limit of 6 hours.
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      # Restore, build and test are separate steps,
+      # so the log shows which part failed.
+      - name: Restore NuGet packages
+        run: dotnet restore MatMentor.slnx
+
+      - name: Build the solution
+        run: dotnet build MatMentor.slnx --no-restore
+
+      # Only the unit test project runs here. The integration tests
+      # need Docker and are slower, so they will get their own job later.
+      - name: Run the unit tests
+        run: dotnet test --project UnitTests/UnitTests.csproj --no-build
