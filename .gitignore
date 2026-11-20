@@ -13,3 +13,4 @@ obj/
 # Test results and coverage output
 TestResults/
 tests-ai/results/
+coverage-report/
