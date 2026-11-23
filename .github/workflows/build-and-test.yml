@@ -90,7 +90,8 @@ jobs:
           path: coverage-report/
 
   integration-tests:
-    # Shown as its own check on the pull request.
+    # This name is a status check that main requires.
+    # Do not rename it, or pull requests can no longer be merged.
     name: Build and run integration tests
     runs-on: ubuntu-latest
     # Stop the job if it hangs, instead of waiting for the default limit of 6 hours.
