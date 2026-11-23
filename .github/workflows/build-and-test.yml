@@ -88,3 +88,34 @@ jobs:
         with:
           name: coverage-report
           path: coverage-report/
+
+  integration-tests:
+    # Shown as its own check on the pull request.
+    name: Build and run integration tests
+    runs-on: ubuntu-latest
+    # Stop the job if it hangs, instead of waiting for the default limit of 6 hours.
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      # Each job runs on its own runner, so the integration-project restores and builds too.
+      - name: Restore NuGet packages
+        run: dotnet restore MatMentor.slnx
+
+      - name: Build the solution
+        run: dotnet build MatMentor.slnx --no-restore
+
+      # The tag must match the one in IntegrationTests/TestHelpers/MsSqlFixture.cs.
+      - name: Pull the SQL Server image
+        run: docker pull mcr.microsoft.com/mssql/server:2022-CU27-ubuntu-22.04
+
+      # Testcontainers uses the Docker engine that is installed on the runner.
+      - name: Run the integration tests
+        run: dotnet test --project IntegrationTests/IntegrationTests.csproj --no-build
