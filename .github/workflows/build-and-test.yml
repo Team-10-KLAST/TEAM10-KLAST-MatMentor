@@ -2,7 +2,8 @@
 # Runs on every pull request to main, so the result shows up on the
 # pull request before it is merged, and again after each merge to main.
 # Can also be started manually from the Actions tab.
-name: Build and test
+# After a merge to main, it also builds the API image and pushes it to GitHub Container Registry.
+name: Build, test and publish
 
 on:
   pull_request:
@@ -120,3 +121,61 @@ jobs:
       # Testcontainers uses the Docker engine that is installed on the runner.
       - name: Run the integration tests
         run: dotnet test --project IntegrationTests/IntegrationTests.csproj --no-build
+
+  publish-image:
+    # Builds the API image once and pushes it to GitHub Container Registry,
+    # so a server can pull and run exactly this build.
+    name: Build and push API image
+    # Only build an image when both test jobs have passed.
+    needs: [unit-tests, integration-tests]
+    # Only after a merge to main, never on a pull request. Code that has
+    # not been reviewed never gets a token that can write packages.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Only this job may write packages. The test jobs can still only read the code.
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      # GHCR names must be lowercase, and the owner name has capital letters.
+      # The tag is the short commit id, so the tag tells which code the image contains.
+      - name: Set the image name and tag
+        run: |
+          echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/matmentor-api" >> "$GITHUB_ENV"
+          echo "TAG=sha-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+
+      # Uses the workflow's own token, so no personal access token is stored in the repo.
+      - name: Log in to GitHub Container Registry
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: echo "$TOKEN" | docker login ghcr.io -u "$ACTOR" --password-stdin
+
+      # Plain docker commands instead of third-party actions.
+      # source links the package to this repository.
+      # revision records the full commit id inside the image.
+      - name: Build the image
+        run: >
+          docker build
+          --label "org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}"
+          --label "org.opencontainers.image.revision=${{ github.sha }}"
+          -t "$IMAGE:$TAG" .
+
+      - name: Push the image
+        run: docker push "$IMAGE:$TAG"
+
+      # The digest identifies exactly this build. It is shown on the run's
+      # Summary page, so it can be compared with the digest on the server.
+      # The last line is ready to copy into the server's .env file.
+      - name: Add the image and digest to the summary
+        run: |
+          DIGEST=$(docker image inspect --format '{{index .RepoDigests 0}}' "$IMAGE:$TAG")
+          echo "### Image pushed" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Tag: $IMAGE:$TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Digest: $DIGEST" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Line for the server's .env: API_IMAGE=$IMAGE:$TAG@${DIGEST#*@}" >> "$GITHUB_STEP_SUMMARY"
